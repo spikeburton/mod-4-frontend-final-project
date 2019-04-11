@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment } from "semantic-ui-react";
+import { Segment, Grid } from "semantic-ui-react";
 import ScoreBoardContainer from "./ScoreBoardContainer";
 import CarContainer from "./CarContainer";
 import StartGameButton from "../components/StartGameButton";
@@ -9,10 +9,20 @@ class GameLoader extends Component {
     return (
       <Segment.Group>
         <Segment>
-          <ScoreBoardContainer />
-          <CarContainer />
+          <Grid columns={2}>
+            <Grid.Row verticalAlign="middle">
+              <Grid.Column>
+                <ScoreBoardContainer />
+              </Grid.Column>
+              <Grid.Column>
+                <CarContainer />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Segment>
-        <StartGameButton />
+        <Segment>
+          <StartGameButton />
+        </Segment>
       </Segment.Group>
     );
   }
