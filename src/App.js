@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {BrowserRouter as Router, Route } from "react-router-dom"
-// import logo from './logo.svg';
-// import './App.css';
+import Login from "./components/Login"
+
 
 class App extends Component {
     render() {
         return (
-            <Router></Router>
+            <Router>
+                <Fragment>
+                    <Route exact path="/" component={Login} />
+                </Fragment>
+            </Router>
         );
     }
 }
