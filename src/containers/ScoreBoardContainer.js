@@ -1,4 +1,5 @@
 import React from 'react';
+import ScoreBoardList from '../components/ScoreBoardList'
 
 class ScoreBoardContainer extends React.Component {
 
@@ -6,7 +7,7 @@ class ScoreBoardContainer extends React.Component {
         return (
 
             <div>
-                {this.funcName}
+                <ScoreBoardList />
             </div>
         )
     }
