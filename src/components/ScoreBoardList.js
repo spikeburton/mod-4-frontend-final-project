@@ -1,15 +1,15 @@
-import React from 'react';
-import ScoreBoardCard from './ScoreBoardCard'
+import React from "react";
+import { Card } from "semantic-ui-react";
+import ScoreBoardCard from "./ScoreBoardCard";
 
 class ScoreBoardList extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <ScoreBoardCard />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <Card.Group itemsPerRow={2}>
+        <ScoreBoardCard />
+      </Card.Group>
+    );
+  }
 }
 
 export default ScoreBoardList;

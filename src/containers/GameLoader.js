@@ -9,7 +9,7 @@ class GameLoader extends Component {
     return (
       <Segment.Group>
         <Segment>
-          <Grid columns={2}>
+          <Grid columns={2} textAlign="center">
             <Grid.Row verticalAlign="middle">
               <Grid.Column>
                 <ScoreBoardContainer />
@@ -20,7 +20,7 @@ class GameLoader extends Component {
             </Grid.Row>
           </Grid>
         </Segment>
-        <Segment>
+        <Segment textAlign="center">
           <StartGameButton />
         </Segment>
       </Segment.Group>
