@@ -1,8 +1,7 @@
 import React from "react";
 import ScoreBoardList from "../components/ScoreBoardList";
 import { Segment } from "semantic-ui-react";
-
-const API = "http://localhost:3000";
+import { API } from "../data"
 
 class ScoreBoardContainer extends React.Component {
   constructor() {
