@@ -3,24 +3,20 @@ import MapContainer from './MapContainer'
 import RealTimeGameStatsContainer from './RealTimeGameStatsContainer'
 import PointLog from '../components/PointLog'
 import { Segment, Grid, Divider } from "semantic-ui-react";
+import "../stylesheets/GameContainer/GameContainer.css";
 
 class GameContainer extends React.Component {
 
     render() {
         return (
-          <div>
-            <Segment>
-              <Grid columns={1} textAlign="center">
-                <Grid.Row verticalAlign="middle">
-                  <Grid.Column>
-                    <MapContainer />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
+          <Segment.Group id="game-container">
+            <Segment id="game-container-top">
+                <MapContainer />
             </Segment>
-            <Segment>
+
+            <Segment id="stats-log-container">
               <Grid columns={2} textAlign="center">
-                <Divider id='stats-log-divider' vertical>-Stats  |  Log-  </Divider>
+                <Divider id="stats-log-divider" vertical />
                 <Grid.Row verticalAlign="middle">
                   <Grid.Column>
                     <RealTimeGameStatsContainer />
@@ -31,7 +27,7 @@ class GameContainer extends React.Component {
                 </Grid.Row>
               </Grid>
             </Segment>
-          </div>
+          </Segment.Group>
         );
     }
 }

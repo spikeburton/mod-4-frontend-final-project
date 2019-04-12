@@ -1,17 +1,10 @@
-import React from 'react';
+import React from "react";
 import { Segment } from "semantic-ui-react";
 
 class PointLog extends React.Component {
-
-    render() {
-        return (
-          <div>
-            <Segment.Group horizontal>
-              <Segment color="green">Point Log</Segment>
-            </Segment.Group>
-          </div>
-        );
-    }
+  render() {
+    return <Segment color="green">Point Log</Segment>;
+  }
 }
 
 export default PointLog;

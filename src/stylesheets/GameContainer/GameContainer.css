@@ -1,0 +1,31 @@
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#game-container {
+  margin: 25px auto 0;
+  width: 950px;
+  height: 600px;
+}
+
+#game-container-top {
+  height: 77%;
+  /* overflow: hidden; */
+  background: url("../../images/map3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* box-sizing: border-box; */
+}
+
+#stats-log-container {
+  /* margin: 25px auto 0; */
+  /* width: 950px; */
+  /* height: 110px; */
+}
+
+#map-container {
+  /* background: url("../../images/map3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box; */
+}
