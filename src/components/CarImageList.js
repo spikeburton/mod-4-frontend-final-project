@@ -1,16 +1,15 @@
-import React from 'react';
-import CarImageCard from './CarImageCard'
+import React from "react";
+import CarImageCard from "./CarImageCard";
+import { Card } from "semantic-ui-react";
 
 class CarImageList extends React.Component {
-
-    render() {
-        return (
-
-            <div>
-                <CarImageCard />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <Card.Group>
+        <CarImageCard />
+      </Card.Group>
+    );
+  }
 }
 
 export default CarImageList;
