@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CarList from "../components/CarList";
+import NewCarButton from "../components/NewCarButton";
 import { API } from "../data";
 import { Segment } from "semantic-ui-react";
 
@@ -25,6 +26,9 @@ class CarContainer extends Component {
         </Segment>
         <Segment placeholder>
           <CarList cars={this.state.cars} />
+        </Segment>
+        <Segment>
+          <NewCarButton />
         </Segment>
       </Segment.Group>
     );

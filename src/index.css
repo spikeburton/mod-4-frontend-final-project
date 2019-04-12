@@ -9,13 +9,13 @@ body {
 }
 
 #game-loader-top {
-  height: 85%;
+  height: 90%;
   overflow: hidden;
 }
 
 #scoreboard-list {
   /* border: 1px solid black; */
-  height: 415px;
+  height: 410px;
   /* overflow: hidden; */
   overflow-y: scroll;
   /* box-sizing: content-box; */
@@ -27,7 +27,7 @@ body {
 
 #car-list {
   /* border: 1px solid black; */
-  height: 415px;
+  height: 360px;
   overflow-y: scroll;
   /* box-sizing: content-box; */
 }
