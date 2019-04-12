@@ -45,7 +45,13 @@ body {
 }
 
 #car-creator-top {
-  height: 500px;
+  /* height: 500px; */
+  height: 90%;
   border: 1px solid black;
   overflow: hidden;
+}
+
+#car-image-list {
+  height: 440px;
+  overflow-y: scroll;
 }
