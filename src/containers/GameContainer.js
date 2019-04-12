@@ -1,6 +1,7 @@
 import React from 'react';
 import MapContainer from './MapContainer'
 import RealTimeGameStatsContainer from './RealTimeGameStatsContainer'
+import PointLog from '../components/PointLog'
 
 class GameContainer extends React.Component {
 
@@ -10,6 +11,7 @@ class GameContainer extends React.Component {
             <div>
                 <MapContainer />
                 <RealTimeGameStatsContainer />
+                <PointLog />
             </div>
         )
     }
