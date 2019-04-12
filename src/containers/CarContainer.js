@@ -1,15 +1,10 @@
-import React from 'react';
-import CarList from '../components/CarList'
+import React, { Component } from "react";
+import CarList from "../components/CarList";
 
-class CarContainer extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <CarList />
-            </div>
-        )
-    }
+class CarContainer extends Component {
+  render() {
+    return <CarList />;
+  }
 }
 
 export default CarContainer;
