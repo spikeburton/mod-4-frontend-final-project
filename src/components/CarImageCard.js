@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
+import { Card } from "semantic-ui-react";
 
 class CarImageCard extends React.Component {
-    render() {
-        return (
-
-            <div>
-                <p>Car Image Card</p>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <Card>
+        <p>Car Image Card</p>
+      </Card>
+    );
+  }
 }
 
 export default CarImageCard;

@@ -5,7 +5,7 @@ import { Card } from "semantic-ui-react";
 class CarImageList extends React.Component {
   render() {
     return (
-      <Card.Group>
+      <Card.Group itemsPerRow={2}>
         <CarImageCard />
       </Card.Group>
     );
