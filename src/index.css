@@ -16,6 +16,10 @@ body {
   border: 1px solid black;
 }
 
+.points {
+  font-weight: bold;
+}
+
 #car-list {
   border: 1px solid black;
 }

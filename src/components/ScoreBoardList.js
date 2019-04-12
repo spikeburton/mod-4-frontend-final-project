@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
 import ScoreBoardCard from "./ScoreBoardCard";
 
-class ScoreBoardList extends React.Component {
+class ScoreBoardList extends Component {
   render() {
     return (
       <Card.Group id="scoreboard-list" itemsPerRow={2}>
-        <ScoreBoardCard />
+        {this.props.scores.map((score, i) => (
+          <ScoreBoardCard key={i} {...score} />
+        ))}
       </Card.Group>
     );
   }
