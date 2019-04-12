@@ -37,3 +37,29 @@ body {
   width: 70px;
   height: 70px;
 }
+
+#car-creator-container {
+  margin: 25px auto 0;
+  width: 950px;
+  height: 600px;
+}
+
+#car-creator-top {
+  /* height: 500px; */
+  height: 90%;
+  /* border: 1px solid black; */
+  overflow: hidden;
+}
+
+#car-image-list {
+  height: 440px;
+  overflow-y: scroll;
+}
+
+#car-stats-list {
+  height: 440px;
+}
+
+#car-stats-form {
+  height: 100%;
+}
