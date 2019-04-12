@@ -37,3 +37,15 @@ body {
   width: 70px;
   height: 70px;
 }
+
+#car-creator-container {
+  margin: 25px auto 0;
+  width: 950px;
+  height: 600px;
+}
+
+#car-creator-top {
+  height: 500px;
+  border: 1px solid black;
+  overflow: hidden;
+}
