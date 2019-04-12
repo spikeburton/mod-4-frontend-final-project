@@ -2,7 +2,7 @@ import React from 'react';
 import MapContainer from './MapContainer'
 import RealTimeGameStatsContainer from './RealTimeGameStatsContainer'
 import PointLog from '../components/PointLog'
-import { Segment, Grid, Divider } from "semantic-ui-react";
+import { Segment, Grid, Divider, Container } from "semantic-ui-react";
 import "../stylesheets/GameContainer/GameContainer.css";
 
 class GameContainer extends React.Component {
@@ -10,9 +10,9 @@ class GameContainer extends React.Component {
     render() {
         return (
           <Segment.Group id="game-container">
-            <Segment id="game-container-top">
+            <div id="game-container-top">
                 <MapContainer />
-            </Segment>
+            </div>
 
             <Segment id="stats-log-container">
               <Grid columns={2} textAlign="center">
