@@ -18,6 +18,60 @@ class GameContainer extends React.Component {
     };
   }
 
+  handleCarMove = e => {
+    const keys = {
+      left: 37,
+      up: 38,
+      right: 39,
+      down: 40
+    };
+    const pos = {
+      x: this.state.car.x,
+      y: this.state.car.y
+    };
+    const px = 5;
+
+    if (Object.values(keys).includes(e.which)) {
+      e.preventDefault();
+
+      switch (e.which) {
+        case keys.left:
+          pos.x -= px;
+          break;
+        case keys.right:
+          pos.x += px;
+          break;
+        case keys.up:
+          pos.y += px;
+          break;
+        case keys.down:
+          pos.y -= px;
+          break;
+        default:
+          console.error("WTF HAPPENED LOL");
+      }
+
+      this.setState({
+        car: {
+          ...this.state.car,
+          x: pos.x,
+          y: pos.y
+        }
+      })
+    }
+    // if (e.which === 38) {
+    //   console.log("pressed UP")
+    // }
+  };
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleCarMove);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleCarMove);
+  }
+
   render() {
     return (
       <Segment.Group id="game-container">
