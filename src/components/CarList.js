@@ -6,7 +6,7 @@ class CarList extends Component {
   render() {
     return (
       <Card.Group id="car-list" itemsPerRow={2}>
-        <CarCard />
+        {this.props.cars.map((car, i) => <CarCard key={i} {...car} />)}
       </Card.Group>
     );
   }

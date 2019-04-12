@@ -10,13 +10,15 @@ body {
 
 #game-loader-top {
   height: 85%;
+  overflow: hidden;
 }
 
 #scoreboard-list {
   /* border: 1px solid black; */
-  height: 430px;
+  height: 415px;
   /* overflow: hidden; */
-  overflow: scroll;
+  overflow-y: scroll;
+  /* box-sizing: content-box; */
 }
 
 .points {
@@ -25,6 +27,13 @@ body {
 
 #car-list {
   /* border: 1px solid black; */
-  height: 430px;
-  overflow: scroll;
+  height: 415px;
+  overflow-y: scroll;
+  /* box-sizing: content-box; */
+}
+
+.car-card img {
+  margin: 10px auto 0;
+  width: 70px;
+  height: 70px;
 }

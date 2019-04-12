@@ -14,7 +14,7 @@ class GameLoader extends Component {
               <Grid.Column>
                 <ScoreBoardContainer />
               </Grid.Column>
-              {/* <Divider vertical></Divider> */}
+              <Divider vertical></Divider>
               <Grid.Column>
                 <CarContainer />
               </Grid.Column>

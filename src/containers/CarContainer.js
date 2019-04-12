@@ -24,7 +24,7 @@ class CarContainer extends Component {
           <h2>Choose Car</h2>
         </Segment>
         <Segment placeholder>
-          <CarList cars={this.state.cars} />;
+          <CarList cars={this.state.cars} />
         </Segment>
       </Segment.Group>
     );

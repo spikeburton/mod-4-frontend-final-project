@@ -1,14 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card } from "semantic-ui-react";
 
-class CarCard extends Component {
-  render() {
-    return (
-      <Card>
-        <p>High! Car Card</p>
-      </Card>
-    );
-  }
-}
+const CarCard = props => {
+  return (
+    <Card className="car-card">
+      <img src={props.up} alt="car" />
+      <h4>name: {props.name}</h4>
+      <p>max fuel: {props.max_fuel}</p>
+      <p>tread: {props.tread_wear}</p>
+      <p>health: {props.health}</p>
+    </Card>
+  );
+};
 
 export default CarCard;
