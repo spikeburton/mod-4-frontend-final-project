@@ -59,3 +59,7 @@ body {
 #car-stats-list {
   height: 440px;
 }
+
+#car-stats-form {
+  height: 100%;
+}
