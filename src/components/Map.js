@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image, Container } from "semantic-ui-react";
 
 class Map extends React.Component {
 
@@ -14,12 +15,17 @@ class Map extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <img className="city-map" alt="pic" src={this.getImage()} />
-                </div>
-            </div>
-        )
+          <div>
+            <Container>
+              <Image
+                className="city-map"
+                alt="pic"
+                src={this.getImage()}
+                fluid
+              />
+            </Container>
+          </div>
+        );
     }
 }
 
