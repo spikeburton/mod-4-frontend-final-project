@@ -55,3 +55,7 @@ body {
   height: 440px;
   overflow-y: scroll;
 }
+
+#car-stats-list {
+  height: 440px;
+}
