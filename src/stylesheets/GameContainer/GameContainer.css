@@ -4,16 +4,18 @@ body {
 
 #game-container {
   margin: 25px auto 0;
-  width: 950px;
+  width: 800px;
   height: 600px;
 }
 
 #game-container-top {
-  height: 77%;
+  /* height: 77%; */
+  height: 450px;
+  width: auto;
   /* overflow: hidden; */
-  background: url("../../images/map3.jpg");
+  /* background: url("../../images/map3.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   /* box-sizing: border-box; */
 }
 
@@ -24,8 +26,10 @@ body {
 }
 
 #map-container {
-  /* background: url("../../images/map3.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-sizing: border-box; */
+  height: 100%;
+  width: 100%;
+  background: url("../../images/map4-4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* box-sizing: border-box; */
 }
