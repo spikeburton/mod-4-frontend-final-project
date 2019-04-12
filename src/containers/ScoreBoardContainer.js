@@ -3,9 +3,7 @@ import ScoreBoardList from "../components/ScoreBoardList";
 
 class ScoreBoardContainer extends React.Component {
   render() {
-    return (
-        <ScoreBoardList />
-    );
+    return <ScoreBoardList />;
   }
 }
 
