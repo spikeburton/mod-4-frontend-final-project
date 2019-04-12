@@ -1,35 +1,45 @@
-import React from 'react';
-import MapContainer from './MapContainer'
-import RealTimeGameStatsContainer from './RealTimeGameStatsContainer'
-import PointLog from '../components/PointLog'
+import React from "react";
 import { Segment, Grid, Divider, Container } from "semantic-ui-react";
+
+import MapContainer from "./MapContainer";
+import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
+import PointLog from "../components/PointLog";
+
 import "../stylesheets/GameContainer/GameContainer.css";
 
 class GameContainer extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      car: {
+        x: 361,
+        y: 0
+      }
+    };
+  }
 
-    render() {
-        return (
-          <Segment.Group id="game-container">
-            <div id="game-container-top">
-                <MapContainer />
-            </div>
-
-            <Segment id="stats-log-container">
-              <Grid columns={2} textAlign="center">
-                <Divider id="stats-log-divider" vertical />
-                <Grid.Row verticalAlign="middle">
-                  <Grid.Column>
-                    <RealTimeGameStatsContainer />
-                  </Grid.Column>
-                  <Grid.Column>
-                    <PointLog />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Segment>
-          </Segment.Group>
-        );
-    }
+  render() {
+    return (
+      <Segment.Group id="game-container">
+        <div id="game-container-top">
+          <MapContainer car={this.state.car} />
+        </div>
+        <Segment id="stats-log-container">
+          <Grid columns={2} textAlign="center">
+            <Divider id="stats-log-divider" vertical />
+            <Grid.Row verticalAlign="middle">
+              <Grid.Column>
+                <RealTimeGameStatsContainer />
+              </Grid.Column>
+              <Grid.Column>
+                <PointLog />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
+      </Segment.Group>
+    );
+  }
 }
 
 export default GameContainer;

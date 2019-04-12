@@ -3,7 +3,7 @@ import Map from "../components/Map";
 
 class MapContainer extends React.Component {
   render() {
-    return <Map />;
+    return <Map car={this.props.car} />;
   }
 }
 

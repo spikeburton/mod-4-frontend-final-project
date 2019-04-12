@@ -8,7 +8,7 @@ class Map extends React.Component {
     return (
       <div id="map-container">
         {/* Car will go here */}
-        <Car />
+        <Car {...this.props.car} />
       </div>
     );
   }
