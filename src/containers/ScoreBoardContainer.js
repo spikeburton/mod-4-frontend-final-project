@@ -4,9 +4,7 @@ import ScoreBoardList from "../components/ScoreBoardList";
 class ScoreBoardContainer extends React.Component {
   render() {
     return (
-      <div>
         <ScoreBoardList />
-      </div>
     );
   }
 }

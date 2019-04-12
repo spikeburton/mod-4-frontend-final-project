@@ -5,7 +5,7 @@ import ScoreBoardCard from "./ScoreBoardCard";
 class ScoreBoardList extends React.Component {
   render() {
     return (
-      <Card.Group itemsPerRow={2}>
+      <Card.Group id="scoreboard-list" itemsPerRow={2}>
         <ScoreBoardCard />
       </Card.Group>
     );

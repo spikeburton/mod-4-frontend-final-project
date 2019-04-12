@@ -1,3 +1,14 @@
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
+
+#game-loader {
+  margin: 25px auto 0;
+
+  width: 950px;
+  height: 600px;
+}
+
+#scoreboard-list {
+  border: 1px solid black;
+}
