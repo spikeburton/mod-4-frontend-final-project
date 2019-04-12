@@ -8,7 +8,7 @@ class GameLoader extends Component {
   render() {
     return (
       <Segment.Group id="game-loader">
-        <Segment>
+        <Segment id="game-loader-top">
           <Grid columns={2} textAlign="center">
             <Grid.Row verticalAlign="middle">
               <Grid.Column>

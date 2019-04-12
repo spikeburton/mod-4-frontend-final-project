@@ -8,6 +8,10 @@ body {
   height: 600px;
 }
 
+#game-loader-top {
+  height: 85%;
+}
+
 #scoreboard-list {
   border: 1px solid black;
 }
