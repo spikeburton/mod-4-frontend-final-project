@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
+import { Card } from "semantic-ui-react";
 
-class ScoreBoardCard extends React.Component {
-
-    render() {
-        return (
-
-            <div>
-                <p>High! Card</p>
-            </div>
-        )
-    }
-}
+const ScoreBoardCard = props => {
+  return (
+    <Card>
+      <h4>username: {props.username}</h4>
+      <p>car: {props.car}</p>
+      <p>points: <span className="points">{props.points}</span></p>
+    </Card>
+  );
+};
 
 export default ScoreBoardCard;

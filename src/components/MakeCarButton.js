@@ -1,14 +1,11 @@
-import React from 'react';
+import React from "react";
 
-class MakeCarButton extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <button>Create Car!</button>
-            </div>
-        )
-    }
-}
+const MakeCarButton = () => {
+  return (
+    <button onClick={() => console.log("Make Car Button clicked")}>
+      Create Car!
+    </button>
+  );
+};
 
 export default MakeCarButton;

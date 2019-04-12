@@ -1,15 +1,11 @@
-import React from 'react';
+import React from "react";
 
-class StartGameButton extends React.Component {
-
-    render() {
-        return (
-
-            <div>
-                <button>Start Game</button>
-            </div>
-        )
-    }
-}
+const StartGameButton = () => {
+  return (
+    <button onClick={() => console.log("Start Game Button clicked")}>
+      Start Game
+    </button>
+  );
+};
 
 export default StartGameButton;

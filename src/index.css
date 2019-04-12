@@ -1,3 +1,39 @@
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#game-loader {
+  margin: 25px auto 0;
+  width: 950px;
+  height: 600px;
+}
+
+#game-loader-top {
+  height: 90%;
+  overflow: hidden;
+}
+
+#scoreboard-list {
+  /* border: 1px solid black; */
+  height: 410px;
+  /* overflow: hidden; */
+  overflow-y: scroll;
+  /* box-sizing: content-box; */
+}
+
+.points {
+  font-weight: bold;
+}
+
+#car-list {
+  /* border: 1px solid black; */
+  height: 360px;
+  overflow-y: scroll;
+  /* box-sizing: content-box; */
+}
+
+.car-card img {
+  margin: 10px auto 0;
+  width: 70px;
+  height: 70px;
 }
