@@ -1,0 +1,14 @@
+body > div,
+body > div > div,
+body > div > div > div.login-form,
+body > div > div > div.signup-form { 
+    height: 100%;
+}
+
+.grid-login {
+    height: '100%';
+}
+
+.grid-column-login {
+    maxWidth: 450;
+}

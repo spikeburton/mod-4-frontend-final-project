@@ -7,20 +7,18 @@ class Login extends React.Component {
     render() {
         return (
             <div className='login-form'>
-            <style>{`body > div, body > div > div, body > div > div > div.login-form { height: 100%; }`}</style>
-                <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-                    <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid className='grid-login'textAlign='center' verticalAlign='middle'>
+                    <Grid.Column className='grid-column-login'>
 
                         <Header as='h2' color='blue' textAlign='center'>
-                            <Image src='/logo.png' /> Log-in to your account
+                            <Image src='/logo.png' /> Sign Up for an account
                         </Header>
 
-                        <Form size='large' onSubmit={(e) => {e.preventDefault(); console.log("Submitted Form", e.target.username.value, e.target.password.value, e.target.repeat.password.value)}}>
+                        <Form size='large' onSubmit={(e) => {e.preventDefault(); console.log("Submitted Form", e.target.username.value, e.target.password.value)}}>
                             <Segment stacked>
                                 <Form.Input fluid icon='user' iconPosition='left' name="username" type="text" placeholder='Username...' />
                                 <Form.Input fluid icon='lock' iconPosition='left' name="password" type="password" placeholder='Password...' type='password' />
-                                <Form.Input fluid icon='lock' iconPosition='left' name="repeatpassword" type="confirm_password" placeholder='Confirm Password...' type='password' />
-                                <Button color='blue' type="submit" fluid size='large'>Login</Button>
+                                <Button color='blue' type="submit" fluid size='large'>Sign Up!</Button>
                             </Segment>
                         </Form>
 
