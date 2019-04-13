@@ -31,11 +31,3 @@ class Login extends React.Component {
     }
 }
 export default Login
-
-            // <div>
-            //     <form onSubmit={(e) => {e.preventDefault(); console.log("Submited Login") }} >
-            //         <input name="username" type="text" label="Username" placeholder="Username..." />
-            //         <input name="password" type="password" label="Password" placeholder="Password..." />
-            //         <input type="submit" value="Login" />
-            //     </form>
-            // </div>
