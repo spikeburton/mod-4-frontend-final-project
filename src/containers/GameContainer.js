@@ -12,7 +12,7 @@ class GameContainer extends React.Component {
     super();
     this.state = {
       car: {
-        x: 361,
+        x: 292,
         y: 0
       }
     };
