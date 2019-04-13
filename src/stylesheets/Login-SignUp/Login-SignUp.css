@@ -1,0 +1,29 @@
+body > div,
+body > div > div,
+body > div > div > div.login-form,
+body > div > div > div.signup-form { 
+    height: 100%;
+}
+
+/* .login-form, */
+/* .signup-form { */
+    /* height: 100%; */
+    /* -webkit-box-pack: center; */
+    /* justify-content: center; */
+/* } */
+
+.grid-login {
+    height: 100%;
+}
+
+.grid-column-login {
+    max-width: 450px;
+}
+
+.grid-signup {
+    height: 100%;
+}
+
+.grid-column-signup {
+    max-width: 450px;
+}
