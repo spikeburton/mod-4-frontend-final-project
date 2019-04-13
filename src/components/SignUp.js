@@ -1,20 +1,38 @@
 import React from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
+
 
 class SignUp extends React.Component {
 
+    // state = {
+    //     password: null,
+    //     repeatpassword: null
+    // }
+
+    // iconChange = (e) => {
+    //     console.log(e.target.value)
+    //     let iconVar = null
+    //     if (e !== undefined) {
+    //         iconVar = 'lock'
+    //         this.setState({ repeatpassword: e.target.value })
+    //     } else {
+    //         iconVar = 'unlock'
+    //     }
+    //     return iconVar
+    // }
+
     render() {
         return (
-            <div className='login-form'>
-                <Grid className='grid-login'textAlign='center' verticalAlign='middle'>
-                    <Grid.Column className='grid-column-login'>
+            <div className='signup-form'>
+                <Grid textAlign='center' verticalAlign='middle' className='grid-signup'>
+                    <Grid.Column className='grid-column-signup'>
 
                         <Header as='h2' color='blue' textAlign='center'>
-                            <Image src='/logo.png' /> Sign Up for an account
+                            <Image src={require('../images/logo.png')} /> Sign Up for an account
                         </Header>
 
-                        <Form size='large' onSubmit={(e) => {e.preventDefault(); console.log("Submitted Form", e.target.username.value, e.target.password.value, e.target.repeat.password.value)}}>
+                        <Form size='large' onSubmit={(e) => {e.preventDefault(); console.log("Submitted Form", e.target.username.value, e.target.password.value, e.target.repeatpassword.value)}}>
                             <Segment stacked>
                                 <Form.Input fluid icon='user' iconPosition='left' name="username" type="text" placeholder='Username...' />
                                 <Form.Input fluid icon='lock' iconPosition='left' name="password" type="password" placeholder='Password...' type='password' />
@@ -22,8 +40,6 @@ class SignUp extends React.Component {
                                 <Button color='blue' type="submit" fluid size='large'>Sign Up!</Button>
                             </Segment>
                         </Form>
-
-                        <Message>Never Played? <a href='/signup'> Create Account!</a></Message>
 
                     </Grid.Column>
                 </Grid>
