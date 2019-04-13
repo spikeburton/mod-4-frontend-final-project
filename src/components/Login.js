@@ -14,11 +14,11 @@ class Login extends React.Component {
                             <Image src='/logo.png' /> Log-in to your account
                         </Header>
 
-                        <Form size='large'>
+                        <Form size='large' onSubmit={(e) => {e.preventDefault(); console.log("Submitted Form", e.target.username.value, e.target.password.value)}}>
                             <Segment stacked>
-                                <Form.Input fluid icon='user' iconPosition='left' placeholder='Email address...' />
-                                <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password...' type='password' />
-                                <Button color='green' fluid size='large'>Login</Button>
+                                <Form.Input fluid icon='user' iconPosition='left' name="username" type="text" placeholder='Email address...' />
+                                <Form.Input fluid icon='lock' iconPosition='left' name="password" type="password" placeholder='Password...' type='password' />
+                                <Button color='green' type="submit"fluid size='large'>Login</Button>
                             </Segment>
                         </Form>
 
