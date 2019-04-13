@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from "semantic-ui-react";
+import "../stylesheets/Login-SignUp/Login-SignUp.css";
 
 class Login extends React.Component {
 
@@ -10,15 +11,16 @@ class Login extends React.Component {
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
 
-                        <Header as='h2' color='green' textAlign='center'>
+                        <Header as='h2' color='blue' textAlign='center'>
                             <Image src='/logo.png' /> Log-in to your account
                         </Header>
 
-                        <Form size='large' onSubmit={(e) => {e.preventDefault(); console.log("Submitted Form", e.target.username.value, e.target.password.value)}}>
+                        <Form size='large' onSubmit={(e) => {e.preventDefault(); console.log("Submitted Form", e.target.username.value, e.target.password.value, e.target.repeat.password.value)}}>
                             <Segment stacked>
-                                <Form.Input fluid icon='user' iconPosition='left' name="username" type="text" placeholder='Email address...' />
+                                <Form.Input fluid icon='user' iconPosition='left' name="username" type="text" placeholder='Username...' />
                                 <Form.Input fluid icon='lock' iconPosition='left' name="password" type="password" placeholder='Password...' type='password' />
-                                <Button color='green' type="submit"fluid size='large'>Login</Button>
+                                <Form.Input fluid icon='lock' iconPosition='left' name="repeatpassword" type="confirm_password" placeholder='Confirm Password...' type='password' />
+                                <Button color='blue' type="submit" fluid size='large'>Login</Button>
                             </Segment>
                         </Form>
 

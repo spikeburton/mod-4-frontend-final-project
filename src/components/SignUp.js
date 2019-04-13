@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button, Form, Grid, Header, Image, Message, Segment } from "semantic-ui-react";
+import "../stylesheets/Login-SignUp/Login-SignUp.css";
 
 class SignUp extends React.Component {
 
