@@ -9,6 +9,7 @@ import {
   Segment
 } from "semantic-ui-react";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
+import { API } from "../data";
 
 class Login extends React.Component {
   state = {
@@ -20,8 +21,8 @@ class Login extends React.Component {
     // console.log(e.target.name);
     // console.log(e.target.value);
     this.setState({
-        [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value
+    });
   };
 
   handleSubmit = e => {
@@ -31,7 +32,24 @@ class Login extends React.Component {
     //   e.target.username.value,
     //   e.target.password.value
     // );
+    fetch(`${API}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ user: this.state })
+    })
+      .then(response => response.json())
+      .then(payload => {
+        if (payload.error) console.log(payload.error);
+        else {
+          console.log("login successful");
+          localStorage.setItem("token", payload.jwt);
+        }
+      });
 
+    e.target.reset();
   };
 
   render() {
