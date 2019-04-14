@@ -5,18 +5,31 @@ import { API } from "../data";
 import { Segment } from "semantic-ui-react";
 
 class CarContainer extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     cars: []
-  //   };
-  // }
+  constructor() {
+    super();
+    this.state = {
+      cars: []
+    };
+  }
 
-  // componentDidMount() {
-  //   fetch(`${API}/cars`)
-  //     .then(response => response.json())
-  //     .then(cars => this.setState({ cars }));
-  // }
+  componentDidMount() {
+    // fetch(`${API}/cars`)
+    //   .then(response => response.json())
+    //   .then(cars => this.setState({ cars }));
+    fetch(`${API}/profile`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    .then(response => response.json())
+    .then(payload => {
+      // console.log(payload)
+      this.setState({
+        cars: payload.user.cars
+      })
+    })
+  }
 
   render() {
     return (
@@ -26,7 +39,7 @@ class CarContainer extends Component {
         </Segment>
         <Segment placeholder>
           {/* <CarList cars={this.state.cars} /> */}
-          <CarList cars={this.props.cars} />
+          <CarList cars={this.state.cars} />
         </Segment>
         <Segment>
           <NewCarButton />
