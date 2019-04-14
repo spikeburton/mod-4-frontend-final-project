@@ -16,7 +16,7 @@ class GameLoader extends Component {
               </Grid.Column>
               <Divider vertical />
               <Grid.Column>
-                <CarContainer cars={this.props.user.cars} />
+                <CarContainer />
               </Grid.Column>
             </Grid.Row>
           </Grid>
