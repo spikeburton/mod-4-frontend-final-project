@@ -28,7 +28,7 @@ class App extends Component {
             path="/"
             render={props => {
               return localStorage.getItem("token") ? (
-                <GameLoader {...props}  />
+                <GameLoader {...props} user={this.state.user}  />
               ) : (
                 <Login setUser={this.setUser} />
               );

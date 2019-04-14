@@ -5,18 +5,18 @@ import { API } from "../data";
 import { Segment } from "semantic-ui-react";
 
 class CarContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cars: []
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     cars: []
+  //   };
+  // }
 
-  componentDidMount() {
-    fetch(`${API}/cars`)
-      .then(response => response.json())
-      .then(cars => this.setState({ cars }));
-  }
+  // componentDidMount() {
+  //   fetch(`${API}/cars`)
+  //     .then(response => response.json())
+  //     .then(cars => this.setState({ cars }));
+  // }
 
   render() {
     return (
@@ -25,7 +25,8 @@ class CarContainer extends Component {
           <h2>Choose Car</h2>
         </Segment>
         <Segment placeholder>
-          <CarList cars={this.state.cars} />
+          {/* <CarList cars={this.state.cars} /> */}
+          <CarList cars={this.props.cars} />
         </Segment>
         <Segment>
           <NewCarButton />
