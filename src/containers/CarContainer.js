@@ -13,9 +13,22 @@ class CarContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API}/cars`)
-      .then(response => response.json())
-      .then(cars => this.setState({ cars }));
+    // fetch(`${API}/cars`)
+    //   .then(response => response.json())
+    //   .then(cars => this.setState({ cars }));
+    fetch(`${API}/profile`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    .then(response => response.json())
+    .then(payload => {
+      // console.log(payload)
+      this.setState({
+        cars: payload.user.cars
+      })
+    })
   }
 
   render() {
@@ -25,6 +38,7 @@ class CarContainer extends Component {
           <h2>Choose Car</h2>
         </Segment>
         <Segment placeholder>
+          {/* <CarList cars={this.state.cars} /> */}
           <CarList cars={this.state.cars} />
         </Segment>
         <Segment>
