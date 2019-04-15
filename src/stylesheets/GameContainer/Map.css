@@ -9,6 +9,11 @@
   /* left: 361px; */
 }
 
+.hospital-tireShop-gasStation {
+    position: absolute;
+    border: 1px solid red;
+}
+
 /* #hospital img {
   width: 100%;
   height: 100%;
