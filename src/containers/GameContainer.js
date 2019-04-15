@@ -14,7 +14,8 @@ class GameContainer extends React.Component {
       car: {
         x: 292,
         y: 0
-      }
+      },
+      boundaries: [] 
     };
   }
 
@@ -66,6 +67,20 @@ class GameContainer extends React.Component {
 
   componentDidMount() {
     document.addEventListener("keydown", this.handleCarMove);
+    const bumperDivs = document.querySelectorAll('.grass-building') 
+    console.log(bumperDivs)
+    let divObjects = [];
+    bumperDivs.forEach(div => {
+      let divObjStyle = { bottom: div.style.bottom, 
+                          left: div.style.left,
+                          width: div.style.width,
+                          height: div.style.height }
+      Object.keys(divObjStyle).map(function(key, i) {
+          divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0])
+      })
+      divObjects.push(divObjStyle)
+    });
+    this.setState({ boundaries: divObjects})
   }
 
   componentWillUnmount() {
