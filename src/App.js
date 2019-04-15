@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import GameLoader from "./containers/GameLoader";
@@ -7,19 +12,10 @@ import CarCreatorContainer from "./containers/CarCreatorContainer";
 import GameContainer from "./containers/GameContainer";
 
 class App extends Component {
-
-  state = {
-    selectedCar: null
-  }
-
-  getCarSelected = (car) => {
-      console.log("selected", car)
-  }
-
   render() {
     return (
       <Router>
-        <Fragment>
+        <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route
@@ -27,15 +23,25 @@ class App extends Component {
             path="/"
             render={props => {
               return localStorage.getItem("token") ? (
-                <GameLoader {...props} getCarSelected={this.getCarSelected} />
+                <GameLoader {...props} />
               ) : (
                 <Login {...props} />
               );
             }}
           />
           <Route exact path="/create" component={CarCreatorContainer} />
-          <Route exact path="/game" component={GameContainer} />
-        </Fragment>
+          <Route
+            exact
+            path="/game"
+            render={props => {
+              return localStorage.getItem("car") ? (
+                <GameContainer {...props} />
+              ) : (
+                <Redirect to="/" />
+              );
+            }}
+          />
+        </Switch>
       </Router>
     );
   }

@@ -19,16 +19,16 @@ class CarContainer extends Component {
     fetch(`${API}/profile`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${localStorage.getItem("token")}`
+        Authorization: `Bearer ${localStorage.getItem("token")}`
       }
     })
-    .then(response => response.json())
-    .then(payload => {
-      // console.log(payload)
-      this.setState({
-        cars: payload.user.cars
-      })
-    })
+      .then(response => response.json())
+      .then(payload => {
+        // console.log(payload)
+        this.setState({
+          cars: payload.user.cars
+        });
+      });
   }
 
   render() {
@@ -39,10 +39,7 @@ class CarContainer extends Component {
         </Segment>
         <Segment placeholder>
           {/* <CarList cars={this.state.cars} /> */}
-          <CarList
-            cars={this.state.cars}
-            getCarSelected={this.props.getCarSelected}
-          />
+          <CarList cars={this.state.cars} />
         </Segment>
         <Segment>
           <NewCarButton />
