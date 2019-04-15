@@ -39,7 +39,10 @@ class CarContainer extends Component {
         </Segment>
         <Segment placeholder>
           {/* <CarList cars={this.state.cars} /> */}
-          <CarList cars={this.state.cars} />
+          <CarList
+            cars={this.state.cars}
+            getCarSelected={this.props.getCarSelected}
+          />
         </Segment>
         <Segment>
           <NewCarButton />

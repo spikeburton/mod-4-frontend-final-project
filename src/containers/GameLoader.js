@@ -16,7 +16,7 @@ class GameLoader extends Component {
               </Grid.Column>
               <Divider vertical />
               <Grid.Column>
-                <CarContainer />
+                <CarContainer getCarSelected={this.props.getCarSelected} />
               </Grid.Column>
             </Grid.Row>
           </Grid>

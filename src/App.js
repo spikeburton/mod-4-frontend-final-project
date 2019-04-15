@@ -7,6 +7,15 @@ import CarCreatorContainer from "./containers/CarCreatorContainer";
 import GameContainer from "./containers/GameContainer";
 
 class App extends Component {
+
+  state = {
+    selectedCar: null
+  }
+
+  getCarSelected = (car) => {
+      console.log("selected", car)
+  }
+
   render() {
     return (
       <Router>
@@ -18,7 +27,7 @@ class App extends Component {
             path="/"
             render={props => {
               return localStorage.getItem("token") ? (
-                <GameLoader {...props} />
+                <GameLoader {...props} getCarSelected={this.getCarSelected} />
               ) : (
                 <Login {...props} />
               );
