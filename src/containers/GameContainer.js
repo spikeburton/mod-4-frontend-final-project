@@ -19,6 +19,8 @@ class GameContainer extends React.Component {
         stats: null,
         data: null
       },
+      moves: 0,
+      gameActive: false,
       boundaries: []
     };
   }
@@ -69,6 +71,8 @@ class GameContainer extends React.Component {
   };
 
   handleCarMove = e => {
+    if (!this.state.gameActive) return false;
+
     const keys = {
       left: 37,
       up: 38,
@@ -102,16 +106,42 @@ class GameContainer extends React.Component {
       }
       if (this.checkCollision(pos.x, pos.y)) {
         console.log("theres been a collision");
+        let health = this.state.car.stats.health
+        health -= 1
+        this.setState({
+          car: {
+            ...this.state.car,
+            stats: {
+              ...this.state.car.stats,
+              health: health
+            }
+          }
+        })
+        if (health === 0) this.gameOver();
       } else if (!this.checkInBounds(pos.x, pos.y)) {
         console.log("Don't go drivin' there partner!");
       } else {
+        let moves = this.state.moves;
+        let decreaseTread = false;
+        let tread = this.state.car.stats.tread;
+
+        moves += 1;
+        if (moves % 5 === 0) decreaseTread = true;
+        tread = decreaseTread ? tread - 1 : tread;
+
         this.setState({
           car: {
             ...this.state.car,
             x: pos.x,
-            y: pos.y
-          }
+            y: pos.y,
+            stats: {
+              ...this.state.car.stats,
+              tread: tread
+            }
+          },
+          moves: moves
         });
+        if (tread === 0) this.gameOver();
       }
     }
   };
@@ -151,18 +181,20 @@ class GameContainer extends React.Component {
           ...this.state.car,
           stats: {
             ...this.state.car.stats,
-            fuel: fuel -= 1
+            fuel: (fuel -= 1)
           }
         }
-      })
-      if (fuel === 0) this.gameOver()
+      });
+      if (fuel === 0) this.gameOver();
     }, 1000);
+    this.setState({ gameActive: true });
   };
 
   gameOver = () => {
-    clearInterval(this.fuel)
-    console.warn("YOU LOSE SUCKER")
-  }
+    clearInterval(this.fuel);
+    this.setState({ gameActive: false });
+    console.warn("YOU LOSE SUCKER");
+  };
 
   componentDidMount() {
     document.addEventListener("keydown", this.handleCarMove);
@@ -172,6 +204,7 @@ class GameContainer extends React.Component {
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleCarMove);
+    clearInterval(this.fuel);
   }
 
   render() {
