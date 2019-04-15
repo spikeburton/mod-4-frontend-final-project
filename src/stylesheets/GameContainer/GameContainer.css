@@ -39,14 +39,17 @@ body {
 
 #car {
   position: absolute;
-  width: 40px;
+  width: 20px;
   height: 40px;
   border: 1px solid black;
+  padding: 0px;
   /* bottom: 0px; */
   /* left: 361px; */
 }
 
 #car img {
-  width: 100%;
+  width: 200%;
   height: 100%;
+  left: -9px;
+  position: absolute;
 }

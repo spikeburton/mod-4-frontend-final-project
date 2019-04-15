@@ -5,6 +5,9 @@ import MapContainer from "./MapContainer";
 import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
 import PointLog from "../components/PointLog";
 
+import { GAME_WIDTH, GAME_HEIGHT, CAR_WIDTH, CAR_HEIGHT } from "../data";
+
+
 import "../stylesheets/GameContainer/GameContainer.css";
 
 class GameContainer extends React.Component {
@@ -14,7 +17,8 @@ class GameContainer extends React.Component {
       car: {
         x: 292,
         y: 0
-      }
+      },
+      boundaries: []
     };
   }
 
@@ -50,26 +54,71 @@ class GameContainer extends React.Component {
         default:
           console.error("WTF HAPPENED LOL");
       }
-
-      this.setState({
-        car: {
-          ...this.state.car,
-          x: pos.x,
-          y: pos.y
-        }
-      })
+      if (this.checkCollision(pos.x, pos.y)) {
+        console.log("theres been a collision");
+      } else if (!this.checkInBounds(pos.x, pos.y)) {
+        console.log("Don't go drivin' there partner!");
+      } else {
+        this.setState({
+          car: {
+            ...this.state.car,
+            x: pos.x,
+            y: pos.y
+          }
+        });
+      }
     }
-    // if (e.which === 38) {
-    //   console.log("pressed UP")
-    // }
   };
 
   componentDidMount() {
     document.addEventListener("keydown", this.handleCarMove);
+    const bumperDivs = document.querySelectorAll(".grass-building");
+    console.log(bumperDivs);
+    let divObjects = [];
+    bumperDivs.forEach(div => {
+      let divObjStyle = {
+        bottom: div.style.bottom,
+        left: div.style.left,
+        width: div.style.width,
+        height: div.style.height
+      };
+      Object.keys(divObjStyle).map(function(key, i) {
+        divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]);
+      });
+      divObjects.push(divObjStyle);
+    });
+    this.setState({ boundaries: divObjects });
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleCarMove);
+  }
+
+  checkCollision = (x, y) => {
+    for (let div of this.state.boundaries) {
+      if (
+        div.left < x + CAR_WIDTH &&
+        div.left + div.width > x &&
+        div.bottom < y + CAR_HEIGHT &&
+        div.height + div.bottom > y
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  checkInBounds = (x, y) => {
+      if (
+          x > 0 &&
+          x < GAME_WIDTH - CAR_WIDTH &&
+          y > 0 &&
+          y < GAME_HEIGHT - CAR_HEIGHT
+      ) {
+          return true
+      } else {
+          return false
+      }
   }
 
   render() {
