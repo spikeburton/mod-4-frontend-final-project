@@ -2,13 +2,15 @@ import React from "react";
 import { Card } from "semantic-ui-react";
 
 const CarCard = props => {
+    let { car } = props
+  
   return (
-    <Card className="car-card">
-      <img src={props.up} alt="car" />
-      <h4>name: {props.name}</h4>
-      <p>max fuel: {props.max_fuel}</p>
-      <p>tread: {props.tread_wear}</p>
-      <p>health: {props.health}</p>
+    <Card className="car-card" onClick={() => {props.getCarSelected(car)}}>
+      <img src={car.up} alt="car" />
+      <h4>name: {car.name}</h4>
+      <p>max fuel: {car.max_fuel}</p>
+      <p>tread: {car.tread_wear}</p>
+      <p>health: {car.health}</p>
     </Card>
   );
 };

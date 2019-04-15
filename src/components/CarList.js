@@ -6,7 +6,13 @@ class CarList extends Component {
   render() {
     return (
       <Card.Group id="car-list" itemsPerRow={2}>
-        {this.props.cars.map((car, i) => <CarCard key={i} {...car} />)}
+        {this.props.cars.map((car, i) => (
+          <CarCard
+            key={i}
+            car={car}
+            getCarSelected={this.props.getCarSelected}
+          />
+        ))}
       </Card.Group>
     );
   }
