@@ -5,6 +5,9 @@ import MapContainer from "./MapContainer";
 import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
 import PointLog from "../components/PointLog";
 
+import { GAME_WIDTH, GAME_HEIGHT, CAR_WIDTH, CAR_HEIGHT } from "../data";
+
+
 import "../stylesheets/GameContainer/GameContainer.css";
 
 class GameContainer extends React.Component {
@@ -53,6 +56,8 @@ class GameContainer extends React.Component {
       }
       if (this.checkCollision(pos.x, pos.y)) {
         console.log("theres been a collision");
+      } else if (!this.checkInBounds(pos.x, pos.y)) {
+        console.log("Don't go drivin' there partner!");
       } else {
         this.setState({
           car: {
@@ -90,13 +95,11 @@ class GameContainer extends React.Component {
   }
 
   checkCollision = (x, y) => {
-    const carWidth = 20;
-    const carHeight = 40;
     for (let div of this.state.boundaries) {
       if (
-        div.left < x + carWidth &&
+        div.left < x + CAR_WIDTH &&
         div.left + div.width > x &&
-        div.bottom < y + carHeight &&
+        div.bottom < y + CAR_HEIGHT &&
         div.height + div.bottom > y
       ) {
         return true;
@@ -104,6 +107,19 @@ class GameContainer extends React.Component {
     }
     return false;
   };
+
+  checkInBounds = (x, y) => {
+      if (
+          x > 0 &&
+          x < GAME_WIDTH - CAR_WIDTH &&
+          y > 0 &&
+          y < GAME_HEIGHT - CAR_HEIGHT
+      ) {
+          return true
+      } else {
+          return false
+      }
+  }
 
   render() {
     return (
