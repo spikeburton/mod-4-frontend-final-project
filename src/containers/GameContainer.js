@@ -16,6 +16,7 @@ class GameContainer extends React.Component {
       car: {
         x: 292,
         y: 0,
+        stats: null,
         data: null
       },
       boundaries: []
@@ -41,7 +42,7 @@ class GameContainer extends React.Component {
   };
 
   getCarData = () => {
-    fetch(`${API}/profile`, {
+    return fetch(`${API}/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -49,14 +50,21 @@ class GameContainer extends React.Component {
     })
       .then(response => response.json())
       .then(payload => {
-        const data = payload.user.cars.find(car => car.id === parseInt(localStorage.getItem("car")))
+        const data = payload.user.cars.find(
+          car => car.id === parseInt(localStorage.getItem("car"))
+        );
         // console.log(data)
         this.setState({
           car: {
             ...this.state.car,
+            stats: {
+              fuel: data.max_fuel,
+              tread: data.tread_wear,
+              health: data.health
+            },
             data: data
           }
-        })
+        });
       });
   };
 
@@ -135,10 +143,31 @@ class GameContainer extends React.Component {
     }
   };
 
+  startGame = () => {
+    this.fuel = window.setInterval(() => {
+      let fuel = this.state.car.stats.fuel;
+      this.setState({
+        car: {
+          ...this.state.car,
+          stats: {
+            ...this.state.car.stats,
+            fuel: fuel -= 1
+          }
+        }
+      })
+      if (fuel === 0) this.gameOver()
+    }, 1000);
+  };
+
+  gameOver = () => {
+    clearInterval(this.fuel)
+    console.warn("YOU LOSE SUCKER")
+  }
+
   componentDidMount() {
     document.addEventListener("keydown", this.handleCarMove);
-    this.getCarData();
     this.setBoundaries();
+    this.getCarData().then(() => this.startGame());
   }
 
   componentWillUnmount() {
@@ -156,7 +185,7 @@ class GameContainer extends React.Component {
             <Divider id="stats-log-divider" vertical />
             <Grid.Row verticalAlign="middle">
               <Grid.Column>
-                <RealTimeGameStatsContainer />
+                <RealTimeGameStatsContainer stats={this.state.car.stats} />
               </Grid.Column>
               <Grid.Column>
                 <PointLog />
