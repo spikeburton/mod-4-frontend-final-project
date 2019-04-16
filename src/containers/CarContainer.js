@@ -37,8 +37,19 @@ class CarContainer extends Component {
     this.setState({ selected: car.id })
     console.log(car);
   };
+
   deleteCar = car => {
-    console.log(car);
+    fetch(`${API}/cars/${car.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+    const i = this.state.cars.indexOf(car)
+    const j = (i + 1)
+    this.setState({ 
+        cars: [...this.state.cars.slice(0, i), ...this.state.cars.slice(j)]
+     })
   };
 
   render() {
