@@ -10,7 +10,7 @@ class GameLoader extends Component {
     return (
       <div className="page-container">
         <Navbar active="home" />
-        <Segment.Group id="game-loader">
+        <Segment.Group>
           <Segment id="game-loader-top">
             <Grid columns={2} textAlign="center">
               <Grid.Row verticalAlign="middle">
