@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 class GameLoader extends Component {
   render() {
     return (
-      <div>
+      <div className="page-container">
         <Navbar active="home" />
         <Segment.Group id="game-loader">
           <Segment id="game-loader-top">
