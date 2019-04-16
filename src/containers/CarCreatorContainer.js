@@ -10,7 +10,7 @@ class CarCreatorContainer extends React.Component {
     return (
       <div className="page-container">
         <Navbar active="create" />
-        <Segment.Group id="car-creator-container">
+        <Segment.Group>
           <Segment id="car-creator-top">
             <Grid columns={2} textAlign="center">
               <Grid.Row verticalAlign="middle">
