@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
 import { API } from "../data";
+import Navbar from "./Navbar";
 
 class Login extends React.Component {
   state = {
@@ -36,7 +37,7 @@ class Login extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        Accept: "application/json"
       },
       body: JSON.stringify({ user: this.state })
     })
@@ -55,45 +56,52 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="login-form">
-        <Grid className="grid-login" textAlign="center" verticalAlign="middle">
-          <Grid.Column className="grid-column-login">
-            <Header as="h2" color="blue" textAlign="center">
-              <Image src={require("../images/logo.png")} /> Log-in to your
-              account
-            </Header>
+      <div className="form-container">
+        <Navbar active="login" />
+        <div className="login-form">
+          <Grid
+            className="grid-login"
+            textAlign="center"
+            verticalAlign="middle"
+          >
+            <Grid.Column className="grid-column-login">
+              <Header as="h2" color="blue" textAlign="center">
+                <Image src={require("../images/logo.png")} /> Log-in to your
+                account
+              </Header>
 
-            <Form size="large" onSubmit={this.handleSubmit}>
-              <Segment stacked>
-                <Form.Input
-                  fluid
-                  icon="user"
-                  iconPosition="left"
-                  name="username"
-                  type="text"
-                  placeholder="Username..."
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  name="password"
-                  type="password"
-                  placeholder="Password..."
-                  onChange={this.handleChange}
-                />
-                <Button color="blue" type="submit" fluid size="large">
-                  Login
-                </Button>
-              </Segment>
-            </Form>
+              <Form size="large" onSubmit={this.handleSubmit}>
+                <Segment stacked>
+                  <Form.Input
+                    fluid
+                    icon="user"
+                    iconPosition="left"
+                    name="username"
+                    type="text"
+                    placeholder="Username..."
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    name="password"
+                    type="password"
+                    placeholder="Password..."
+                    onChange={this.handleChange}
+                  />
+                  <Button color="blue" type="submit" fluid size="large">
+                    Login
+                  </Button>
+                </Segment>
+              </Form>
 
-            <Message>
-              Never Played? <a href="/signup"> Create Account!</a>
-            </Message>
-          </Grid.Column>
-        </Grid>
+              <Message>
+                Never Played? <a href="/signup"> Create Account!</a>
+              </Message>
+            </Grid.Column>
+          </Grid>
+        </div>
       </div>
     );
   }

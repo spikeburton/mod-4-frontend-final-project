@@ -1,11 +1,15 @@
 body {
-  font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
-#game-loader {
-  margin: 25px auto 0;
+/* #game-loader {
+  margin: 0 auto;
   width: 950px;
   height: 600px;
+} */
+.page-container {
+  margin: 0 auto;
+  width: 800px;
 }
 
 #game-loader-top {
@@ -38,11 +42,11 @@ body {
   height: 70px;
 }
 
-#car-creator-container {
-  margin: 25px auto 0;
+/* #car-creator-container {
+  margin: 0 auto;
   width: 950px;
   height: 600px;
-}
+} */
 
 #car-creator-top {
   /* height: 500px; */

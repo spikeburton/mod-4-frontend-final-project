@@ -1,10 +1,9 @@
 import React from "react";
+import { Button } from "semantic-ui-react";
 
 const MakeCarButton = () => {
   return (
-    <button onClick={() => console.log("Make Car Button clicked")}>
-      Create Car!
-    </button>
+    <Button>Create Car</Button>
   );
 };
 

@@ -1,7 +1,7 @@
 body > div,
 body > div > div,
 body > div > div > div.login-form,
-body > div > div > div.signup-form { 
+body > div > div > div.signup-form {
     height: 100%;
 }
 
@@ -19,4 +19,9 @@ body > div > div > div.signup-form {
 
 .grid-column-signup {
     max-width: 450px;
+}
+
+.form-container {
+    width: 800px;
+    margin: 0 auto
 }

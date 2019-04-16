@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
 import { API } from "../data";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
+import Navbar from "./Navbar";
 
 class SignUp extends React.Component {
   state = {
@@ -45,7 +46,7 @@ class SignUp extends React.Component {
           payload.error.forEach(error => console.error(error));
         } else {
           localStorage.setItem("token", payload.jwt);
-          this.props.history.push("/")
+          this.props.history.push("/");
         }
       });
 
@@ -63,54 +64,61 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="signup-form">
-        <Grid textAlign="center" verticalAlign="middle" className="grid-signup">
-          <Grid.Column className="grid-column-signup">
-            <Header as="h2" color="blue" textAlign="center">
-              <Image src={require("../images/logo.png")} /> Sign Up for an
-              account
-            </Header>
+      <div className="form-container">
+        <Navbar active="signup" />
+        <div className="signup-form">
+          <Grid
+            textAlign="center"
+            verticalAlign="middle"
+            className="grid-signup"
+          >
+            <Grid.Column className="grid-column-signup">
+              <Header as="h2" color="blue" textAlign="center">
+                <Image src={require("../images/logo.png")} /> Sign Up for an
+                account
+              </Header>
 
-            <Form
-              size="large"
-              onSubmit={this.handleSubmit}
-              onReset={this.handleReset}
-            >
-              <Segment stacked>
-                <Form.Input
-                  fluid
-                  icon="user"
-                  iconPosition="left"
-                  name="username"
-                  type="text"
-                  placeholder="Username..."
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  name="password"
-                  type="password"
-                  placeholder="Password..."
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  name="password_confirmation"
-                  type="password"
-                  placeholder="Confirm Password..."
-                  onChange={this.handleChange}
-                />
-                <Button color="blue" type="submit" fluid size="large">
-                  Sign Up!
-                </Button>
-              </Segment>
-            </Form>
-          </Grid.Column>
-        </Grid>
+              <Form
+                size="large"
+                onSubmit={this.handleSubmit}
+                onReset={this.handleReset}
+              >
+                <Segment stacked>
+                  <Form.Input
+                    fluid
+                    icon="user"
+                    iconPosition="left"
+                    name="username"
+                    type="text"
+                    placeholder="Username..."
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    name="password"
+                    type="password"
+                    placeholder="Password..."
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    name="password_confirmation"
+                    type="password"
+                    placeholder="Confirm Password..."
+                    onChange={this.handleChange}
+                  />
+                  <Button color="blue" type="submit" fluid size="large">
+                    Sign Up!
+                  </Button>
+                </Segment>
+              </Form>
+            </Grid.Column>
+          </Grid>
+        </div>
       </div>
     );
   }

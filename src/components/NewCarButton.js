@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import { Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
-const NewCarButton = props => {
+const NewCarButton = () => {
   return (
-    <button onClick={() => console.log("New Car Button clicked")}>New Car</button>
-  )
-}
+    <Link to="/create">
+      <Button>New Car</Button>
+    </Link>
+  );
+};
 
-export default NewCarButton
+export default NewCarButton;
