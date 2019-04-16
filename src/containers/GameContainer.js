@@ -4,6 +4,8 @@ import { Segment, Grid, Divider, Container } from "semantic-ui-react";
 import MapContainer from "./MapContainer";
 import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
 import PointLog from "../components/PointLog";
+import GameOver from "../components/GameOver";
+
 
 import { GAME_WIDTH, GAME_HEIGHT, CAR_WIDTH, CAR_HEIGHT, API } from "../data";
 
@@ -22,7 +24,8 @@ class GameContainer extends React.Component {
       },
       moves: 0,
       gameActive: false,
-      boundaries: []
+      boundaries: [],
+      gameOver: false
     };
   }
 
@@ -193,7 +196,7 @@ class GameContainer extends React.Component {
 
   gameOver = () => {
     clearInterval(this.fuel);
-    this.setState({ gameActive: false });
+    this.setState({ gameActive: false, gameOver: true });
     console.warn("YOU LOSE SUCKER");
   };
 
@@ -230,6 +233,7 @@ class GameContainer extends React.Component {
             </Grid>
           </Segment>
         </Segment.Group>
+        <GameOver gameOver={this.state.gameOver}/>
       </div>
     );
   }
