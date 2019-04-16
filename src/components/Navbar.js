@@ -8,20 +8,17 @@ class Navbar extends Component {
 
     return (
       <Menu secondary color="blue">
-        <Link to="/">
-          <Menu.Item
-            name="home"
-            active={active === "home"}
-            // onClick={this.handleClick}
-          />
+        <Link to="/" className={active === "home" ? "item active" : "item"}>
+          <div className="content">Home</div>
         </Link>
-        <Link to="/create">
-          <Menu.Item
-            name="create"
-            active={active === "create"}
-            // onClick={this.handleClick}
-          />
-        </Link>
+        {localStorage.getItem("token") ? (
+          <Link
+            to="/create"
+            className={active === "create" ? "item active" : "item"}
+          >
+            <div className="content">Create Car</div>
+          </Link>
+        ) : null}
         <Menu.Menu position="right">
           {localStorage.getItem("token") ? (
             <Link
