@@ -24,7 +24,7 @@ class GameOver extends React.Component {
                   <Icon name="remove" /> No
                 </Button>
                 </Link>
-                <Button color="green" inverted onClick={console.log("newGame")}>
+                <Button color="green" inverted onClick={() => this.props.startGame()}>
                   <Icon name="checkmark" /> Yes
                 </Button>
               </Modal.Actions>
