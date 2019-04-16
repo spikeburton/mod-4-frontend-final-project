@@ -18,13 +18,25 @@ class MakeCarButton extends React.Component {
     // t.index ["user_id"], name: "index_cars_on_user_id"
 
     createCar = () => {
+
+        const { car, stats } = this.props
+
         const carObj = {
-            
-        }
+          user_id: localStorage.getItem("user"),
+          name: car.name,
+          up: car.up,
+          down: car.down,
+          left: car.left,
+          right: car.right,
+          max_fuel: stats.max_fuel,
+          tread_wear: stats.tread_wear,
+          health: stats.health
+        };
 
         fetch(`${API}/cars`, {
             method: "POST",
             headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(carObj)
