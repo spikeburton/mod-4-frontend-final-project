@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 class CarCreatorContainer extends React.Component {
   render() {
     return (
-      <div>
+      <div className="page-container">
         <Navbar active="create" />
         <Segment.Group id="car-creator-container">
           <Segment id="car-creator-top">
