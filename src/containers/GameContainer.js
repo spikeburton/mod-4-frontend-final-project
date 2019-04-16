@@ -8,6 +8,7 @@ import PointLog from "../components/PointLog";
 import { GAME_WIDTH, GAME_HEIGHT, CAR_WIDTH, CAR_HEIGHT, API } from "../data";
 
 import "../stylesheets/GameContainer/GameContainer.css";
+import Navbar from "../components/Navbar";
 
 class GameContainer extends React.Component {
   constructor() {
@@ -106,8 +107,8 @@ class GameContainer extends React.Component {
       }
       if (this.checkCollision(pos.x, pos.y)) {
         console.log("theres been a collision");
-        let health = this.state.car.stats.health
-        health -= 1
+        let health = this.state.car.stats.health;
+        health -= 1;
         this.setState({
           car: {
             ...this.state.car,
@@ -116,7 +117,7 @@ class GameContainer extends React.Component {
               health: health
             }
           }
-        })
+        });
         if (health === 0) this.gameOver();
       } else if (!this.checkInBounds(pos.x, pos.y)) {
         console.log("Don't go drivin' there partner!");
@@ -209,24 +210,27 @@ class GameContainer extends React.Component {
 
   render() {
     return (
-      <Segment.Group id="game-container">
-        <div id="game-container-top">
-          <MapContainer car={this.state.car} />
-        </div>
-        <Segment id="stats-log-container">
-          <Grid columns={2} textAlign="center">
-            <Divider id="stats-log-divider" vertical />
-            <Grid.Row verticalAlign="middle">
-              <Grid.Column>
-                <RealTimeGameStatsContainer stats={this.state.car.stats} />
-              </Grid.Column>
-              <Grid.Column>
-                <PointLog />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
-      </Segment.Group>
+      <div id="game-container">
+        <Navbar />
+        <Segment.Group id="game-container">
+          <div id="game-container-top">
+            <MapContainer car={this.state.car} />
+          </div>
+          <Segment id="stats-log-container">
+            <Grid columns={2} textAlign="center">
+              <Divider id="stats-log-divider" vertical />
+              <Grid.Row verticalAlign="middle">
+                <Grid.Column>
+                  <RealTimeGameStatsContainer stats={this.state.car.stats} />
+                </Grid.Column>
+                <Grid.Column>
+                  <PointLog />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+        </Segment.Group>
+      </div>
     );
   }
 }
