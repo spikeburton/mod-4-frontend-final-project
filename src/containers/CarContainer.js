@@ -8,7 +8,8 @@ class CarContainer extends Component {
   constructor() {
     super();
     this.state = {
-      cars: []
+      cars: [],
+      selected: null
     };
   }
 
@@ -31,6 +32,15 @@ class CarContainer extends Component {
       });
   }
 
+  handleClick = car => {
+    localStorage.setItem("car", car.id)
+    this.setState({ selected: car.id })
+    console.log(car);
+  };
+  deleteCar = car => {
+    console.log(car);
+  };
+
   render() {
     return (
       <Segment.Group>
@@ -39,7 +49,12 @@ class CarContainer extends Component {
         </Segment>
         <Segment placeholder>
           {/* <CarList cars={this.state.cars} /> */}
-          <CarList cars={this.state.cars} />
+          <CarList
+            cars={this.state.cars}
+            selected={this.state.selected}
+            handleClick={this.handleClick}
+            deleteCar={this.deleteCar}
+          />
         </Segment>
         <Segment>
           <NewCarButton />
