@@ -10,7 +10,7 @@ class CarStatsContainer extends React.Component {
           <h2>Car Stats</h2>
         </Segment>
         <Segment id="car-stats-list">
-          <CarStats />
+          <CarStats car={this.props.car} />
         </Segment>
       </Segment.Group>
     );

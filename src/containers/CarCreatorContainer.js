@@ -6,6 +6,16 @@ import { Segment, Grid, Divider } from "semantic-ui-react";
 import Navbar from "../components/Navbar";
 
 class CarCreatorContainer extends React.Component {
+
+    state = {
+        car: null
+    }
+
+    renderCarStats = (car) => {
+        // this.setState({ car: car })
+        this.setState({ car })
+    }
+
   render() {
     return (
       <div className="page-container">
@@ -15,11 +25,13 @@ class CarCreatorContainer extends React.Component {
             <Grid columns={2} textAlign="center">
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <CarImageContainer />
+                  <CarImageContainer
+                    renderCarStats={this.renderCarStats}
+                  />
                 </Grid.Column>
                 <Divider vertical />
                 <Grid.Column>
-                  <CarStatsContainer />
+                  <CarStatsContainer car={this.state.car} />
                 </Grid.Column>
               </Grid.Row>
             </Grid>

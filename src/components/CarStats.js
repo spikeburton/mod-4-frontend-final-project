@@ -8,10 +8,11 @@ const DEFAULT_STATS = {
 };
 
 class CarStats extends Component {
-  constructor() {
-    super();
-    this.state = DEFAULT_STATS;
+
+  state = {
+      car: null
   }
+  
 
   handleChange = e => {
     this.setState({
@@ -26,6 +27,7 @@ class CarStats extends Component {
   };
 
   render() {
+      const { car } = this.props
     return (
       <Segment as={Form} id="car-stats-form">
         <Grid columns={2}>
@@ -40,7 +42,7 @@ class CarStats extends Component {
                 type="range"
                 min={0}
                 max={100}
-                value={this.state.max_fuel}
+                value={car ? car.max_fuel : DEFAULT_STATS.max_fuel}
                 onChange={this.handleChange}
                 onDoubleClick={this.handleDoubleClick}
               />
@@ -50,7 +52,7 @@ class CarStats extends Component {
                 type="range"
                 min={0}
                 max={100}
-                value={this.state.tread_wear}
+                value={car ? car.tread_wear : DEFAULT_STATS.tread_wear}
                 onChange={this.handleChange}
                 onDoubleClick={this.handleDoubleClick}
               />
@@ -60,7 +62,7 @@ class CarStats extends Component {
                 type="range"
                 min={0}
                 max={100}
-                value={this.state.health}
+                value={car ? car.health : DEFAULT_STATS.health}
                 onChange={this.handleChange}
                 onDoubleClick={this.handleDoubleClick}
               />
