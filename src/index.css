@@ -3,7 +3,7 @@ body {
 }
 
 #game-loader {
-  margin: 25px auto 0;
+  margin: 0 auto;
   width: 950px;
   height: 600px;
 }
