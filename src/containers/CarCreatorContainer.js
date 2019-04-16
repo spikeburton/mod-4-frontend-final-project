@@ -30,17 +30,22 @@ class CarCreatorContainer extends React.Component {
   };
 
   handleChange = e => {
+    //   console.log(typeof(e.target.value))
+    //   console.log(e.target.value)
     this.setState({
       stats: {
-          ...this.state.stats,
-          [e.target.name]: e.target.value
+        ...this.state.stats,
+        [e.target.name]: parseInt(e.target.value)
       }
     });
   };
 
   handleDoubleClick = e => {
     this.setState({
-      [e.target.name]: DEFAULT_STATS[e.target.name]
+      stats: {
+        ...this.state.stats,
+        [e.target.name]: this.state.car[e.target.name]
+      }
     });
   };
 
