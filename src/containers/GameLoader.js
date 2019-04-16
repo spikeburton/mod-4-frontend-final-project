@@ -9,7 +9,7 @@ class GameLoader extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar active="home" />
         <Segment.Group id="game-loader">
           <Segment id="game-loader-top">
             <Grid columns={2} textAlign="center">
