@@ -1,68 +1,47 @@
 import React, { Component } from "react";
 import { Segment, Form, Grid, Image } from "semantic-ui-react";
 
-const DEFAULT_STATS = {
-  max_fuel: 50,
-  tread_wear: 50,
-  health: 50
-};
-
 class CarStats extends Component {
-  constructor() {
-    super();
-    this.state = DEFAULT_STATS;
-  }
-
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  handleDoubleClick = e => {
-    this.setState({
-      [e.target.name]: DEFAULT_STATS[e.target.name]
-    });
-  };
 
   render() {
+      const { car, stats, handleChange, handleDoubleClick } = this.props
     return (
       <Segment as={Form} id="car-stats-form">
         <Grid columns={2}>
           <Grid.Row verticalAlign="middle">
             <Grid.Column>
-              <Image src="http://images.clipartpanda.com/car-top-view-clipart-red-racing-car-top-view-fe3a.png" />
+              <Image src={car ? require(`../images/cars${car.right}`) : null }/>
             </Grid.Column>
             <Grid.Column>
               <Form.Input
-                label={`Max Fuel: ${this.state.max_fuel}`}
+                label={`Max Fuel: ${stats.max_fuel}`}
                 name="max_fuel"
                 type="range"
                 min={0}
                 max={100}
-                value={this.state.max_fuel}
-                onChange={this.handleChange}
-                onDoubleClick={this.handleDoubleClick}
+                value={stats.max_fuel}
+                onChange={handleChange}
+                onDoubleClick={handleDoubleClick}
               />
               <Form.Input
-                label={`Tread Wear: ${this.state.tread_wear}`}
+                label={`Tread Wear: ${stats.tread_wear}`}
                 name="tread_wear"
                 type="range"
                 min={0}
                 max={100}
-                value={this.state.tread_wear}
-                onChange={this.handleChange}
-                onDoubleClick={this.handleDoubleClick}
+                value={stats.tread_wear}
+                onChange={handleChange}
+                onDoubleClick={handleDoubleClick}
               />
               <Form.Input
-                label={`Health: ${this.state.health}`}
+                label={`Health: ${stats.health}`}
                 name="health"
                 type="range"
                 min={0}
                 max={100}
-                value={this.state.health}
-                onChange={this.handleChange}
-                onDoubleClick={this.handleDoubleClick}
+                value={stats.health}
+                onChange={handleChange}
+                onDoubleClick={handleDoubleClick}
               />
             </Grid.Column>
           </Grid.Row>

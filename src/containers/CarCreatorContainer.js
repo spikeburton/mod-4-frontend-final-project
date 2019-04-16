@@ -5,7 +5,50 @@ import MakeCarButton from "../components/MakeCarButton";
 import { Segment, Grid, Divider } from "semantic-ui-react";
 import Navbar from "../components/Navbar";
 
+const DEFAULT_STATS = {
+  max_fuel: 50,
+  tread_wear: 50,
+  health: 50
+};
+
 class CarCreatorContainer extends React.Component {
+  state = {
+    stats: DEFAULT_STATS,
+    car: null
+  };
+
+  renderCarStats = car => {
+    // this.setState({ car: car })
+    this.setState({
+      car: car,
+      stats: {
+        max_fuel: car.max_fuel,
+        tread_wear: car.tread_wear,
+        health: car.health
+      }
+    });
+  };
+
+  handleChange = e => {
+    //   console.log(typeof(e.target.value))
+    //   console.log(e.target.value)
+    this.setState({
+      stats: {
+        ...this.state.stats,
+        [e.target.name]: parseInt(e.target.value)
+      }
+    });
+  };
+
+  handleDoubleClick = e => {
+    this.setState({
+      stats: {
+        ...this.state.stats,
+        [e.target.name]: this.state.car[e.target.name]
+      }
+    });
+  };
+
   render() {
     return (
       <div className="page-container">
@@ -15,17 +58,22 @@ class CarCreatorContainer extends React.Component {
             <Grid columns={2} textAlign="center">
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <CarImageContainer />
+                  <CarImageContainer renderCarStats={this.renderCarStats} />
                 </Grid.Column>
                 <Divider vertical />
                 <Grid.Column>
-                  <CarStatsContainer />
+                  <CarStatsContainer
+                    car={this.state.car}
+                    stats={this.state.stats}
+                    handleChange={this.handleChange}
+                    handleDoubleClick={this.handleDoubleClick}
+                  />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
           </Segment>
           <Segment textAlign="center">
-            <MakeCarButton />
+            <MakeCarButton car={this.state.car} stats={this.state.stats} />
           </Segment>
         </Segment.Group>
       </div>

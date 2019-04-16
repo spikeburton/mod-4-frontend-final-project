@@ -45,8 +45,9 @@ class Login extends React.Component {
       .then(payload => {
         if (payload.error) console.log(payload.error);
         else {
-          console.log("login successful");
-          localStorage.setItem("token", payload.jwt);
+          console.log(payload);
+          localStorage.setItem("user", payload.user.id);
+          localStorage.setItem("token", payload.jwt, );
           this.props.history.push("/");
         }
       });
