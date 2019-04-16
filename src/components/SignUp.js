@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
+import { API } from "../data";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
 
 class SignUp extends React.Component {
@@ -30,7 +31,34 @@ class SignUp extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state)
+    // console.log(this.state);
+    fetch(`${API}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(response => response.json())
+      .then(payload => {
+        if (payload.error) {
+          payload.error.forEach(error => console.error(error));
+        } else {
+          localStorage.setItem("token", payload.jwt);
+          this.props.history.push("/")
+        }
+      });
+
+    e.target.reset();
+  };
+
+  handleReset = () => {
+    // console.log("form reset");
+    this.setState({
+      username: "",
+      password: "",
+      password_confirmation: ""
+    });
   };
 
   render() {
@@ -43,7 +71,11 @@ class SignUp extends React.Component {
               account
             </Header>
 
-            <Form size="large" onSubmit={this.handleSubmit}>
+            <Form
+              size="large"
+              onSubmit={this.handleSubmit}
+              onReset={this.handleReset}
+            >
               <Segment stacked>
                 <Form.Input
                   fluid
