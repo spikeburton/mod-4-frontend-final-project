@@ -4,6 +4,7 @@ import { Segment, Grid, Divider, Container } from "semantic-ui-react";
 import MapContainer from "./MapContainer";
 import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
 import PointLog from "../components/PointLog";
+import GameOver from "../components/GameOver";
 
 import { GAME_WIDTH, GAME_HEIGHT, CAR_WIDTH, CAR_HEIGHT, API } from "../data";
 
@@ -22,7 +23,8 @@ class GameContainer extends React.Component {
       },
       moves: 0,
       gameActive: false,
-      boundaries: []
+      boundaries: [],
+      gameOver: false
     };
   }
 
@@ -175,32 +177,36 @@ class GameContainer extends React.Component {
   };
 
   startGame = () => {
-    this.fuel = window.setInterval(() => {
-      let fuel = this.state.car.stats.fuel;
-      this.setState({
-        car: {
-          ...this.state.car,
-          stats: {
-            ...this.state.car.stats,
-            fuel: (fuel -= 1)
+      console.log("game started")
+    document.addEventListener("keydown", this.handleCarMove);
+    this.setState({ gameActive: true, gameOver: false });
+    this.getCarData().then(() => {
+      this.fuel = window.setInterval(() => {
+        let fuel = this.state.car.stats.fuel;
+        this.setState({
+          car: {
+            ...this.state.car,
+            stats: {
+              ...this.state.car.stats,
+              fuel: (fuel -= 1)
+            }
           }
-        }
-      });
-      if (fuel === 0) this.gameOver();
-    }, 1000);
-    this.setState({ gameActive: true });
+        });
+        if (fuel === 0) this.gameOver();
+      }, 1000);
+    });
   };
 
   gameOver = () => {
+    document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
-    this.setState({ gameActive: false });
+    this.setState({ gameActive: false, gameOver: true });
     console.warn("YOU LOSE SUCKER");
   };
 
   componentDidMount() {
-    document.addEventListener("keydown", this.handleCarMove);
     this.setBoundaries();
-    this.getCarData().then(() => this.startGame());
+    this.startGame();
   }
 
   componentWillUnmount() {
@@ -221,7 +227,9 @@ class GameContainer extends React.Component {
               <Divider id="stats-log-divider" vertical />
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <RealTimeGameStatsContainer stats={this.state.car.stats} />
+                  <RealTimeGameStatsContainer
+                    stats={this.state.car.stats}
+                  />
                 </Grid.Column>
                 <Grid.Column>
                   <PointLog />
@@ -230,6 +238,10 @@ class GameContainer extends React.Component {
             </Grid>
           </Segment>
         </Segment.Group>
+        <GameOver
+          gameOver={this.state.gameOver}
+          startGame={this.startGame}
+        />
       </div>
     );
   }
