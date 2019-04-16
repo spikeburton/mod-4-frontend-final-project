@@ -1,5 +1,3 @@
-
-
 .grass-building {
   position: absolute;
   border: 1px solid black;
@@ -9,12 +7,41 @@
   /* left: 361px; */
 }
 
-.hospital-tireShop-gasStation {
-    position: absolute;
-    border: 1px solid red;
+.hospital {
+  position: absolute;
+  border: 1px solid red;
 }
 
-/* #hospital img {
-  width: 100%;
-  height: 100%;
-} */
+.hospital img {
+  position: absolute;
+  width: 42%;
+  height: 42%;
+  left: 13px;
+  top: 19px;
+}
+
+.tireShop {
+  position: absolute;
+  border: 1px solid orange;
+}
+
+.tireShop img {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  left: 18px;
+  top: 1px;
+}
+
+.gasStation {
+  position: absolute;
+  border: 1px solid yellow;
+}
+
+.gasStation img {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  left: 6px;
+  top: 13px;
+}

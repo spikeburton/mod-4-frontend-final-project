@@ -184,32 +184,38 @@ let Boundaries = () => {
           }}
         />
         <div
-          className="hospital-tireShop-gasStation"
+          className="gasStation"
           style={{
             bottom: "288px",
             left: "671px",
             width: "92px",
             height: "69px"
           }}
-        />
+        >
+          <img src={require("../images/gas-pump.png")} />
+        </div>
         <div
-          className="hospital-tireShop-gasStation"
+          className="hospital"
           style={{
             bottom: "110px",
             left: "23px",
             width: "92px",
             height: "85px"
           }}
-        />
+        >
+          <img src={require("../images/red-cross.png")} />
+        </div>
         <div
-          className="hospital-tireShop-gasStation"
+          className="tireShop"
           style={{
             bottom: "412px",
             left: "393px",
             width: "67px",
             height: "39px"
           }}
-        />
+        >
+          <img src={require("../images/mechanic.png")} />
+        </div>
       </div>
     );
 }
