@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
 class Navbar extends Component {
@@ -8,16 +8,18 @@ class Navbar extends Component {
 
     return (
       <Menu secondary color="blue">
-        <Link to="/" className={active === "home" ? "item active" : "item"}>
-          <div className="content">Home</div>
-        </Link>
         {localStorage.getItem("token") ? (
-          <Link
-            to="/create"
-            className={active === "create" ? "item active" : "item"}
-          >
-            <div className="content">Create Car</div>
-          </Link>
+          <Fragment>
+            <Link to="/" className={active === "home" ? "item active" : "item"}>
+              <div className="content">Home</div>
+            </Link>
+            <Link
+              to="/create"
+              className={active === "create" ? "item active" : "item"}
+            >
+              <div className="content">Create Car</div>
+            </Link>
+          </Fragment>
         ) : null}
         <Menu.Menu position="right">
           {localStorage.getItem("token") ? (
