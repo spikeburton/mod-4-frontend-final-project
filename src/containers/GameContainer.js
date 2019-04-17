@@ -23,10 +23,30 @@ class GameContainer extends React.Component {
       },
       moves: 0,
       boundaries: [],
-      points: 100,
       gameActive: false,
-      gameOver: false
+      gameOver: false,
+      points: 0,
+      finalPoints: 0,
+      pointTimerOn: false,
+      start: 0
     };
+  }
+
+  startPointsTimer() {
+    this.setState({
+      pointTimerOn: true,
+      points: this.state.points,
+      start: Date.now() - this.state.points
+    });
+    this.timer = setInterval(() =>
+        this.setState({
+          points: Date.now() - this.state.start
+        }), 100);
+  }
+
+  stopPointsTimer() {
+    this.setState({ points: 0, pointTimerOn: false, start: 0 });
+    clearInterval(this.timer);
   }
 
   setBoundaries = () => {
@@ -182,7 +202,7 @@ class GameContainer extends React.Component {
       user_id: parseInt(localStorage.getItem("user")),
       car_id: parseInt(localStorage.getItem("car")),
       points: this.state.points
-    }
+    };
 
     return fetch(`${API}/scores`, {
       method: "POST",
@@ -191,13 +211,14 @@ class GameContainer extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(score)
-    })
-  }
+    });
+  };
 
   startGame = () => {
-      console.log("game started")
+    console.log("game started");
+    this.startPointsTimer()
     document.addEventListener("keydown", this.handleCarMove);
-    this.setState({ gameActive: true, gameOver: false });
+    this.setState({ gameActive: true, gameOver: false, finalPoints: 0 });
     this.getCarData().then(() => {
       this.fuel = window.setInterval(() => {
         let fuel = this.state.car.stats.fuel;
@@ -218,8 +239,9 @@ class GameContainer extends React.Component {
   gameOver = () => {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
-    this.setState({ gameActive: false, gameOver: true });
-    this.saveScore()
+    this.setState({ gameActive: false, gameOver: true, finalPoints: this.state.points });
+    this.saveScore();
+    this.stopPointsTimer();
     // console.warn("YOU LOSE SUCKER");
   };
 
@@ -251,7 +273,7 @@ class GameContainer extends React.Component {
                   />
                 </Grid.Column>
                 <Grid.Column>
-                  <PointLog />
+                  <PointLog points={this.state.points} />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -260,6 +282,7 @@ class GameContainer extends React.Component {
         <GameOver
           gameOver={this.state.gameOver}
           startGame={this.startGame}
+          finalPoints={this.state.finalPoints}
         />
       </div>
     );
