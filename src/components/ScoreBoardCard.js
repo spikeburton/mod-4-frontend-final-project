@@ -8,10 +8,10 @@ const ScoreBoardCard = props => {
     <List.Item>
       <Image
         floated="left"
-        size="tiny"
+        size="mini"
         src={require(`../images/cars${props.image}`)}
       />
-      <List.Content floated="left">
+      <List.Content>
         <List.Header>{`Points: ${props.points}`}</List.Header>
         {`User: ${name} Car: ${props.car}`}
       </List.Content>

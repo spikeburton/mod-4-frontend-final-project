@@ -9,7 +9,7 @@ class CarStatsContainer extends React.Component {
         <Segment>
           <h2>Car Stats</h2>
         </Segment>
-        <Segment className="divided-panel-container" style={{ padding: "23% 0%" }}>
+        <Segment className="divided-panel-container">
           {this.props.car ? (
             <CarStats
               car={this.props.car}

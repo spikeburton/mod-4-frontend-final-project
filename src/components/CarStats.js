@@ -8,29 +8,31 @@ class CarStats extends Component {
     return (
       <Segment as={Form} id="car-stats-form">
         <Grid columns={2}>
-          <Grid.Row verticalAlign="middle">
+          <Grid.Row verticalAlign="middle" style={{ padding: '26% 0%' }}>
             <Grid.Column>
               <Card>
                 <Card.Content>
                   <Image
-                    size="tiny"
                     src={require(`../images/cars${car.right}`)}
-                    style={{ width: "75%" }}
+                    style={{ width: "60px" }}
                   />
                 </Card.Content>
                 <Card.Content>
-                  <Card.Header style={{ "fontSize": "1.035em" }}>
+                  <Card.Header style={{ fontSize: "1.035em" }}>
                     <strong>{car.name}</strong>
                   </Card.Header>
                   <Card.Description>
                     <p>
                       <strong>Fuel:</strong>
+                      {` ${stats.max_fuel}`}
                     </p>
                     <p>
                       <strong>Tread:</strong>
+                      {` ${stats.tread_wear}`}
                     </p>
                     <p>
                       <strong>Health:</strong>
+                      {` ${stats.health}`}
                     </p>
                   </Card.Description>
                 </Card.Content>
@@ -38,7 +40,7 @@ class CarStats extends Component {
             </Grid.Column>
             <Grid.Column>
               <Form.Input
-                label={`Max Fuel: ${stats.max_fuel}`}
+                label={`Max Fuel`}
                 name="max_fuel"
                 type="range"
                 min={0}
@@ -48,7 +50,7 @@ class CarStats extends Component {
                 onDoubleClick={handleDoubleClick}
               />
               <Form.Input
-                label={`Tread Wear: ${stats.tread_wear}`}
+                label={`Tread Wear`}
                 name="tread_wear"
                 type="range"
                 min={0}
@@ -58,7 +60,7 @@ class CarStats extends Component {
                 onDoubleClick={handleDoubleClick}
               />
               <Form.Input
-                label={`Health: ${stats.health}`}
+                label={`Health`}
                 name="health"
                 type="range"
                 min={0}
