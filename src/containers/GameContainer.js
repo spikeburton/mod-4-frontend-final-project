@@ -23,6 +23,9 @@ class GameContainer extends React.Component {
       },
       moves: 0,
       boundaries: [],
+      buffLocations: [],
+      auraActive: false,
+      canActivateAura: true,
       gameActive: false,
       gameOver: false,
       points: 0,
@@ -38,10 +41,13 @@ class GameContainer extends React.Component {
       points: this.state.points,
       start: Date.now() - this.state.points
     });
-    this.timer = setInterval(() =>
+    this.timer = setInterval(
+      () =>
         this.setState({
           points: Date.now() - this.state.start
-        }), 100);
+        }),
+      100
+    );
   }
 
   stopPointsTimer() {
@@ -60,11 +66,32 @@ class GameContainer extends React.Component {
         height: div.style.height
       };
       Object.keys(divObjStyle).map(function(key, i) {
-        return divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]);
+        return (divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]));
       });
       divObjects.push(divObjStyle);
     });
     this.setState({ boundaries: divObjects });
+  };
+
+  setBuffLocations = () => {
+    const hospital = document.querySelector(".hospital");
+    const tireShop = document.querySelector(".tireShop");
+    const gasStation = document.querySelector(".gasStation");
+    let buffs = [hospital, tireShop, gasStation];
+    buffs = buffs.map(div => {
+      const attributes = {
+        bottom: div.style.bottom,
+        left: div.style.left,
+        width: div.style.width,
+        height: div.style.height
+      };
+      for (let i in attributes) {
+        attributes[i] = parseInt(attributes[i].split("px")[0]);
+      }
+      return { ...attributes, className: div.className };
+    });
+    this.setState({ buffLocations: buffs });
+    // console.log(buffs);
   };
 
   getCarData = () => {
@@ -97,77 +124,81 @@ class GameContainer extends React.Component {
   handleCarMove = e => {
     if (!this.state.gameActive) return false;
 
-    const keys = {
-      left: 37,
-      up: 38,
-      right: 39,
-      down: 40
-    };
-    const pos = {
-      x: this.state.car.x,
-      y: this.state.car.y
-    };
-    const px = 5;
+    window.requestAnimationFrame(() => {
+      const keys = {
+        left: 37,
+        up: 38,
+        right: 39,
+        down: 40
+      };
+      const pos = {
+        x: this.state.car.x,
+        y: this.state.car.y
+      };
+      const px = 5;
 
-    if (Object.values(keys).includes(e.which)) {
-      e.preventDefault();
+      if (Object.values(keys).includes(e.which)) {
+        e.preventDefault();
 
-      switch (e.which) {
-        case keys.left:
-          pos.x -= px;
-          break;
-        case keys.right:
-          pos.x += px;
-          break;
-        case keys.up:
-          pos.y += px;
-          break;
-        case keys.down:
-          pos.y -= px;
-          break;
-        default:
-          console.error("WTF HAPPENED LOL");
-      }
-      if (this.checkCollision(pos.x, pos.y)) {
-        console.log("theres been a collision");
-        let health = this.state.car.stats.health;
-        health -= 1;
-        this.setState({
-          car: {
-            ...this.state.car,
-            stats: {
-              ...this.state.car.stats,
-              health: health
+        switch (e.which) {
+          case keys.left:
+            pos.x -= px;
+            break;
+          case keys.right:
+            pos.x += px;
+            break;
+          case keys.up:
+            pos.y += px;
+            break;
+          case keys.down:
+            pos.y -= px;
+            break;
+          default:
+            console.error("WTF HAPPENED LOL");
+        }
+        if (this.checkCollision(pos.x, pos.y)) {
+          console.log("theres been a collision");
+          let health = this.state.car.stats.health;
+          health -= 10;
+          this.setState({
+            car: {
+              ...this.state.car,
+              stats: {
+                ...this.state.car.stats,
+                health: health
+              }
             }
-          }
-        });
-        if (health === 0) this.gameOver();
-      } else if (!this.checkInBounds(pos.x, pos.y)) {
-        console.log("Don't go drivin' there partner!");
-      } else {
-        let moves = this.state.moves;
-        let decreaseTread = false;
-        let tread = this.state.car.stats.tread;
+          });
+          if (health === 0) this.gameOver();
+        } else if (!this.checkInBounds(pos.x, pos.y)) {
+          console.log("Don't go drivin' there partner!");
+        } else {
+          let moves = this.state.moves;
+          let decreaseTread = false;
+          let tread = this.state.car.stats.tread;
 
-        moves += 1;
-        if (moves % 5 === 0) decreaseTread = true;
-        tread = decreaseTread ? tread - 1 : tread;
+          moves += 1;
+          if (moves % 10 === 0) decreaseTread = true;
+          tread = decreaseTread ? tread - 1 : tread;
 
-        this.setState({
-          car: {
-            ...this.state.car,
-            x: pos.x,
-            y: pos.y,
-            stats: {
-              ...this.state.car.stats,
-              tread: tread
-            }
-          },
-          moves: moves
-        });
-        if (tread === 0) this.gameOver();
+          if (!this.state.auraActive) this.checkInAura(pos.x, pos.y);
+
+          this.setState({
+            car: {
+              ...this.state.car,
+              x: pos.x,
+              y: pos.y,
+              stats: {
+                ...this.state.car.stats,
+                tread: tread
+              }
+            },
+            moves: moves
+          });
+          if (tread === 0) this.gameOver();
+        }
       }
-    }
+    });
   };
 
   checkCollision = (x, y) => {
@@ -197,6 +228,81 @@ class GameContainer extends React.Component {
     }
   };
 
+  checkInAura = (x, y) => {
+    for (let div of this.state.buffLocations) {
+      if (
+        div.left < x + CAR_WIDTH &&
+        div.left + div.width > x &&
+        div.bottom < y + CAR_HEIGHT &&
+        div.height + div.bottom > y
+      ) {
+        console.log(`hit aura: ${div.className}`);
+        if (this.state.canActivateAura) this.setAura(div.className);
+        return true;
+      }
+    }
+    return false;
+  };
+
+  setAura = name => {
+    // Set aura status to active
+    this.setState({ auraActive: true });
+    this.buffTimer = setInterval(() => {
+      switch (name) {
+        case "hospital":
+          console.log("health buff active");
+          let health = this.state.car.stats.health;
+          health += 2;
+          this.updateCarStats("health", health);
+          break;
+        case "tireShop":
+          console.log("tread buff active");
+          let tread = this.state.car.stats.tread;
+          tread += 10;
+          this.updateCarStats("tread", tread);
+          break;
+        case "gasStation":
+          console.log("fuel buff active");
+          let fuel = this.state.car.stats.fuel;
+          fuel += 6;
+          this.updateCarStats("fuel", fuel);
+          break;
+        default:
+          console.error("THIS SHOULD NOT RUN");
+          break;
+      }
+    }, 1000);
+
+    // find the aura by class name and set the opacity to show user it is active
+    const aura = document.querySelector(`.${name}`).querySelector(".aura");
+    aura.style.opacity = 0.4;
+
+    // Set amount of time aura is active, and then deactive aura buffs
+    window.setTimeout(() => {
+      aura.style.opacity = 0;
+      window.clearInterval(this.buffTimer);
+
+      // After aura has been deactivated, do not allow player to activate again
+      // for 15 seconds
+      this.setState({ auraActive: false, canActivateAura: false });
+      window.setTimeout(() => {
+        this.setState({ canActivateAura: true });
+      }, 15000);
+    }, 4000);
+  };
+
+  updateCarStats = (stat, value) => {
+    this.setState({
+      car: {
+        ...this.state.car,
+        stats: {
+          ...this.state.car.stats,
+          [stat]: value
+        }
+      }
+    });
+  };
+
   saveScore = () => {
     const score = {
       user_id: parseInt(localStorage.getItem("user")),
@@ -216,7 +322,7 @@ class GameContainer extends React.Component {
 
   startGame = () => {
     console.log("game started");
-    this.startPointsTimer()
+    this.startPointsTimer();
     document.addEventListener("keydown", this.handleCarMove);
     this.setState({ gameActive: true, gameOver: false, finalPoints: 0 });
     this.getCarData().then(() => {
@@ -239,7 +345,12 @@ class GameContainer extends React.Component {
   gameOver = () => {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
-    this.setState({ gameActive: false, gameOver: true, finalPoints: this.state.points });
+    clearInterval(this.buffTimer);
+    this.setState({
+      gameActive: false,
+      gameOver: true,
+      finalPoints: this.state.points
+    });
     this.saveScore();
     this.stopPointsTimer();
     // console.warn("YOU LOSE SUCKER");
@@ -247,12 +358,15 @@ class GameContainer extends React.Component {
 
   componentDidMount() {
     this.setBoundaries();
+    this.setBuffLocations();
     this.startGame();
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
+    clearInterval(this.timer);
+    clearInterval(this.buffTimer);
   }
 
   render() {
@@ -268,9 +382,7 @@ class GameContainer extends React.Component {
               <Divider id="stats-log-divider" vertical />
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <RealTimeGameStatsContainer
-                    stats={this.state.car.stats}
-                  />
+                  <RealTimeGameStatsContainer stats={this.state.car.stats} />
                 </Grid.Column>
                 <Grid.Column>
                   <PointLog points={this.state.points} />

@@ -41,7 +41,7 @@ body {
   position: absolute;
   width: 20px;
   height: 40px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 0px;
   z-index: 2;
   /* bottom: 0px; */
