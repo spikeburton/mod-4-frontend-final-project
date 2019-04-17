@@ -5,7 +5,7 @@ import RealTimeGameStats from "../components/RealTimeGameStats";
 class RealTimeGameStatsContainer extends React.Component {
   render() {
     return (
-      <Segment>
+      <Segment color="red">
         {this.props.stats ? (
           <RealTimeGameStats stats={this.props.stats} />
         ) : null}

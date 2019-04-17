@@ -11,19 +11,18 @@ class PointLog extends React.Component {
             return <p key={i} className={log.type}>{log.msg}</p>
         })
     }
-
-    // <pre>{showAllLogs()}</pre>
+    
   render() {
     return (
       <Segment.Group horizontal>
-        <Segment color="yellow">
+        <Segment color="yellow" style={{ padding: "10% 0%" }}>
           <FontAwesomeIcon icon={faCoins} size="sm" />
-          {`Points: ${this.props.points}`}
+           {` Points:`} <p>{`${this.props.points}`}</p>
         </Segment>
         <Segment className="HQComps" id="logPanel" color="yellow">
-            {this.showAllLogs()}
-            {null}
-          </Segment>
+          <pre>{this.showAllLogs()}</pre>
+          {null}
+        </Segment>
       </Segment.Group>
     );
   }

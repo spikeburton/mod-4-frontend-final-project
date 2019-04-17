@@ -174,6 +174,7 @@ class GameContainer extends React.Component {
           });
         } else if (!this.checkInBounds(pos.x, pos.y)) {
           console.log("Don't go drivin' there partner!");
+          this.handleLogs(Log.warn("Not over there partner!"));
         } else {
           let moves = this.state.moves;
           let decreaseTread = false;
@@ -373,8 +374,13 @@ class GameContainer extends React.Component {
   }
 
   logInitialStartLog = () => {
-    const welcomeLog = Log.notify('Hey there partner!');
+    const welcomeLog = Log.notify("Hey there partner!");
     this.setState({ logs: [welcomeLog, ...this.state.logs] });
+  };
+
+  handleLogs = log => {
+    console.log(log)
+    this.setState({ logs: [log, ...this.state.logs] });
   };
 
   render() {
@@ -390,10 +396,15 @@ class GameContainer extends React.Component {
               <Divider id="stats-log-divider" vertical />
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <RealTimeGameStatsContainer stats={this.state.car.stats} />
+                  <RealTimeGameStatsContainer
+                    stats={this.state.car.stats}
+                  />
                 </Grid.Column>
                 <Grid.Column>
-                  <PointLog points={this.state.points} logs={this.state.logs} />
+                  <PointLog
+                    points={this.state.points}
+                    logs={this.state.logs}
+                  />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
