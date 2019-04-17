@@ -14,13 +14,13 @@ class RealTimeGameStats extends React.Component {
     return (
       <Segment.Group horizontal>
         <Segment color="red">
-          <FontAwesomeIcon icon={faGasPump} size="lg" /> {`Fuel: ${stats.fuel}`}
+          <FontAwesomeIcon icon={faGasPump} size="md" /> {`Fuel: ${stats.fuel}`}
         </Segment>
         <Segment color="red">
-          <FontAwesomeIcon icon={faCircleNotch} size="lg" spin /> {`Tire Tread: ${stats.tread}`}
+          <FontAwesomeIcon icon={faCircleNotch} size="md" spin /> {`Tire Tread: ${stats.tread}`}
         </Segment>
         <Segment color="red">
-          <FontAwesomeIcon icon={faHeart} size="lg" /> {`Health: ${stats.health}`}
+          <FontAwesomeIcon icon={faHeart} size="md" /> {`Health: ${stats.health}`}
         </Segment>
       </Segment.Group>
     );

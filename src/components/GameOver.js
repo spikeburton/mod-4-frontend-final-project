@@ -14,9 +14,9 @@ class GameOver extends React.Component {
             >
               <Header icon="exclamation triangle" content="GAME OVER" />
               <Modal.Content>
-                <p>
-                  Would you like to play again?
-                </p>
+                <p>{`You scored ${this.props.finalPoints} points!`}</p>
+                <br />
+                <p>Would you like to play again?</p>
               </Modal.Content>
               <Modal.Actions>
                 <Link to="/">
