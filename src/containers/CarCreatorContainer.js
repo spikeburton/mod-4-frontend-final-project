@@ -73,7 +73,14 @@ class CarCreatorContainer extends React.Component {
       },
       body: JSON.stringify(carObj)
     })
-    .then(this.props.history.push("/"));
+    .then(res => res.json())
+    .then(payload => {
+        if(payload.error){
+            console.error(payload.error)
+        } else {
+            this.props.history.push("/")
+        }
+    })
   };
 
   render() {

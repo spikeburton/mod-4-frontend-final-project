@@ -46,6 +46,7 @@ const CarCard = props => {
             <Icon
               name="trash alternate"
               style={{ margin: "0px 0px 0px 0px" }}
+              onClick={() => props.deleteCar(car)}
             />
           </Button>
         </div>
