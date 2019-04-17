@@ -35,7 +35,7 @@ class CarContainer extends Component {
   handleClick = car => {
     localStorage.setItem("car", car.id);
     this.setState({ selected: car.id });
-    console.log(car);
+    // console.log(car);
   };
 
   deleteCar = car => {
