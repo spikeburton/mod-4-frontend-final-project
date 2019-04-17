@@ -5,7 +5,6 @@ import {
   Grid,
   Header,
   Image,
-  Segment,
   Message
 } from "semantic-ui-react";
 import { API } from "../data";
@@ -40,7 +39,7 @@ class SignUp extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // delete this.state.errors
+    delete this.state.errors
     // console.log(this.state);
     fetch(`${API}/users`, {
       method: "POST",
@@ -53,7 +52,7 @@ class SignUp extends React.Component {
       .then(payload => {
         if (payload.error) {
           // payload.error.forEach(error => console.error(error));
-          this.setState({ errors: payload.error })
+          this.setState({ errors: payload.error });
         } else {
           localStorage.setItem("user", payload.user.id);
           localStorage.setItem("token", payload.jwt);
@@ -90,42 +89,41 @@ class SignUp extends React.Component {
               </Header>
 
               <Form
+                className="fluid segment stacked"
                 size="large"
                 onSubmit={this.handleSubmit}
                 onReset={this.handleReset}
               >
-                <Segment stacked>
-                  <Form.Input
-                    fluid
-                    icon="user"
-                    iconPosition="left"
-                    name="username"
-                    type="text"
-                    placeholder="Username..."
-                    onChange={this.handleChange}
-                  />
-                  <Form.Input
-                    fluid
-                    icon="lock"
-                    iconPosition="left"
-                    name="password"
-                    type="password"
-                    placeholder="Password..."
-                    onChange={this.handleChange}
-                  />
-                  <Form.Input
-                    fluid
-                    icon="lock"
-                    iconPosition="left"
-                    name="password_confirmation"
-                    type="password"
-                    placeholder="Confirm Password..."
-                    onChange={this.handleChange}
-                  />
-                  <Button color="blue" type="submit" fluid size="large">
-                    Sign Up!
-                  </Button>
-                </Segment>
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  name="username"
+                  type="text"
+                  placeholder="Username..."
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  name="password"
+                  type="password"
+                  placeholder="Password..."
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  name="password_confirmation"
+                  type="password"
+                  placeholder="Confirm Password..."
+                  onChange={this.handleChange}
+                />
+                <Button color="blue" type="submit" fluid size="large">
+                  Sign Up!
+                </Button>
               </Form>
               {this.state.errors ? (
                 <Message

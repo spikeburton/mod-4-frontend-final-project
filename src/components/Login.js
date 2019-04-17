@@ -28,6 +28,7 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    delete this.state.errors
     // console.log(
     //   "Submitted Form",
     //   e.target.username.value,
@@ -43,11 +44,12 @@ class Login extends React.Component {
     })
       .then(response => response.json())
       .then(payload => {
-        if (payload.error) console.log(payload.error);
-        else {
+        if (payload.error) {
+          this.setState({ errors: payload.error });
+        } else {
           // console.log(payload);
           localStorage.setItem("user", payload.user.id);
-          localStorage.setItem("token", payload.jwt, );
+          localStorage.setItem("token", payload.jwt);
           this.props.history.push("/");
         }
       });
@@ -96,10 +98,18 @@ class Login extends React.Component {
                   </Button>
                 </Segment>
               </Form>
-
-              <Message>
-                Never Played? <a href="/signup"> Create Account!</a>
-              </Message>
+              {this.state.errors ? (
+                <Message
+                  error
+                  header="There were some errors with your submission"
+                  attached="bottom"
+                  list={this.state.errors}
+                />
+              ) : (
+                <Message>
+                  Never Played? <a href="/signup"> Create Account!</a>
+                </Message>
+              )}
             </Grid.Column>
           </Grid>
         </div>
