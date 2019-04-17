@@ -12,6 +12,7 @@ const Buffs = () => {
           height: "69px"
         }}
       >
+        <div className="aura" style={{ background: "yellow", boxShadow: "0px 0px 7px 7px rgba(255, 255, 190, 0.75)" }} />
         <img src={require("../images/gas-pump.png")} alt="" />
       </div>
       <div
@@ -23,6 +24,7 @@ const Buffs = () => {
           height: "85px"
         }}
       >
+        <div className="aura" style={{ background: "red", boxShadow: "0px 0px 7px 7px rgba(255, 0, 0, 0.75)" }} />
         <img src={require("../images/red-cross.png")} alt="" />
       </div>
       <div
@@ -34,6 +36,7 @@ const Buffs = () => {
           height: "39px"
         }}
       >
+        <div className="aura" style={{ background: "orange", boxShadow: "0px 0px 7px 7px rgba(255, 165, 0, 0.75)" }} />
         <img src={require("../images/mechanic.png")} alt="" />
       </div>
     </Fragment>

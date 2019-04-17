@@ -1,6 +1,6 @@
 .grass-building {
   position: absolute;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* width: 40px; */
   /* height: 40px; */
   /* bottom: 0px; */
@@ -10,9 +10,6 @@
 .hospital {
   position: absolute;
   border: 1px solid red;
-  background: red;
-  z-index: 1;
-  opacity: 0;
 }
 
 .hospital img {
@@ -38,7 +35,7 @@
 
 .gasStation {
   position: absolute;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 }
 
 .gasStation img {
@@ -47,4 +44,12 @@
   height: 60%;
   left: 6px;
   top: 13px;
+}
+
+.aura {
+  margin: 5% auto 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 7px;
+  opacity: 0.3;
 }
