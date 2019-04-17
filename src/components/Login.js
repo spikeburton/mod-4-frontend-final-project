@@ -6,7 +6,6 @@ import {
   Header,
   Image,
   Message,
-  Segment
 } from "semantic-ui-react";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
 import { API } from "../data";

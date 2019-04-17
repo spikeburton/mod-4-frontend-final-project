@@ -8,7 +8,7 @@ class MakeCarButton extends React.Component {
     const { car, stats } = this.props;
 
     const carObj = {
-      user_id: localStorage.getItem("user"),
+      user_id: parseInt(localStorage.getItem("user")),
       name: car.name,
       up: car.up,
       down: car.down,
