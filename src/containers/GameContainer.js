@@ -28,7 +28,8 @@ class GameContainer extends React.Component {
       points: 0,
       finalPoints: 0,
       pointTimerOn: false,
-      start: 0
+      start: 0,
+      logs: []
     };
   }
 
@@ -38,10 +39,13 @@ class GameContainer extends React.Component {
       points: this.state.points,
       start: Date.now() - this.state.points
     });
-    this.timer = setInterval(() =>
+    this.timer = setInterval(
+      () =>
         this.setState({
           points: Date.now() - this.state.start
-        }), 100);
+        }),
+      100
+    );
   }
 
   stopPointsTimer() {
@@ -60,7 +64,7 @@ class GameContainer extends React.Component {
         height: div.style.height
       };
       Object.keys(divObjStyle).map(function(key, i) {
-        return divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]);
+        return (divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]));
       });
       divObjects.push(divObjStyle);
     });
@@ -216,7 +220,7 @@ class GameContainer extends React.Component {
 
   startGame = () => {
     console.log("game started");
-    this.startPointsTimer()
+    this.startPointsTimer();
     document.addEventListener("keydown", this.handleCarMove);
     this.setState({ gameActive: true, gameOver: false, finalPoints: 0 });
     this.getCarData().then(() => {
@@ -239,7 +243,11 @@ class GameContainer extends React.Component {
   gameOver = () => {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
-    this.setState({ gameActive: false, gameOver: true, finalPoints: this.state.points });
+    this.setState({
+      gameActive: false,
+      gameOver: true,
+      finalPoints: this.state.points
+    });
     this.saveScore();
     this.stopPointsTimer();
     // console.warn("YOU LOSE SUCKER");
@@ -255,6 +263,11 @@ class GameContainer extends React.Component {
     clearInterval(this.fuel);
   }
 
+  logInitialStartLog = () => {
+    const welcomeLog = Log.notify("");
+    this.setState({ logs: [welcomeLog, ...this.state.logs] });
+  };
+
   render() {
     return (
       <div id="game-container">
@@ -268,12 +281,10 @@ class GameContainer extends React.Component {
               <Divider id="stats-log-divider" vertical />
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <RealTimeGameStatsContainer
-                    stats={this.state.car.stats}
-                  />
+                  <RealTimeGameStatsContainer stats={this.state.car.stats} />
                 </Grid.Column>
                 <Grid.Column>
-                  <PointLog points={this.state.points} />
+                  <PointLog points={this.state.points} logs={this.state.logs} />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
