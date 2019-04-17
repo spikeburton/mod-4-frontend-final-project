@@ -24,6 +24,8 @@ class GameContainer extends React.Component {
       moves: 0,
       boundaries: [],
       buffLocations: [],
+      auraActive: false,
+      canActivateAura: true,
       gameActive: false,
       gameOver: false,
       points: 0,
@@ -178,7 +180,8 @@ class GameContainer extends React.Component {
         if (moves % 5 === 0) decreaseTread = true;
         tread = decreaseTread ? tread - 1 : tread;
 
-        this.checkInAura(pos.x, pos.y);
+        if (!this.state.auraActive) this.checkInAura(pos.x, pos.y);
+
         this.setState({
           car: {
             ...this.state.car,
@@ -232,7 +235,7 @@ class GameContainer extends React.Component {
         div.height + div.bottom > y
       ) {
         console.log(`hit aura: ${div.className}`);
-        this.setAura(div.className);
+        if(this.state.canActivateAura) this.setAura(div.className);
         return true;
       }
     }
@@ -240,11 +243,28 @@ class GameContainer extends React.Component {
   };
 
   setAura = name => {
+    // Set aura status to active
+    this.setState({ auraActive: true });
+    this.buffTimer = setInterval(() => {
+      console.log("aura active")
+    }, 1000)
+
+    // find the aura by class name and set the opacity to show user it is active
     const aura = document.querySelector(`.${name}`).querySelector(".aura");
     aura.style.opacity = 0.4;
+
+    // Set amount of time aura is active, and then deactive aura buffs
     window.setTimeout(() => {
       aura.style.opacity = 0;
-    }, 2000)
+      window.clearInterval(this.buffTimer)
+
+      // After aura has been deactivated, do not allow player to activate again
+      // for 15 seconds
+      this.setState({ auraActive: false, canActivateAura: false });
+      window.setTimeout(() => {
+        this.setState({ canActivateAura: true })
+      }, 15000)
+    }, 4000);
   };
 
   saveScore = () => {
