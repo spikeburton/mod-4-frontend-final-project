@@ -47,7 +47,7 @@ class CarContainer extends Component {
     });
     const i = this.state.cars.indexOf(car)
     const j = (i + 1)
-    this.setState({ 
+    this.setState({
         cars: [...this.state.cars.slice(0, i), ...this.state.cars.slice(j)]
      })
   };
