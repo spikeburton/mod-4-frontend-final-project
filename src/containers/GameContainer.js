@@ -23,6 +23,7 @@ class GameContainer extends React.Component {
       },
       moves: 0,
       boundaries: [],
+      buffLocations: [],
       gameActive: false,
       gameOver: false,
       points: 0,
@@ -38,10 +39,13 @@ class GameContainer extends React.Component {
       points: this.state.points,
       start: Date.now() - this.state.points
     });
-    this.timer = setInterval(() =>
+    this.timer = setInterval(
+      () =>
         this.setState({
           points: Date.now() - this.state.start
-        }), 100);
+        }),
+      100
+    );
   }
 
   stopPointsTimer() {
@@ -60,11 +64,32 @@ class GameContainer extends React.Component {
         height: div.style.height
       };
       Object.keys(divObjStyle).map(function(key, i) {
-        return divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]);
+        return (divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]));
       });
       divObjects.push(divObjStyle);
     });
     this.setState({ boundaries: divObjects });
+  };
+
+  setBuffLocations = () => {
+    const hospital = document.querySelector(".hospital");
+    const tireShop = document.querySelector(".tireShop");
+    const gasStation = document.querySelector(".gasStation");
+    let buffs = [hospital, tireShop, gasStation];
+    buffs = buffs.map(div => {
+      const attributes = {
+        bottom: div.style.bottom,
+        left: div.style.left,
+        width: div.style.width,
+        height: div.style.height
+      };
+      for (let i in attributes) {
+        attributes[i] = parseInt(attributes[i].split("px")[0]);
+      }
+      return { ...attributes, className: div.className };
+    });
+    this.setState({ buffLocations: buffs });
+    // console.log(buffs);
   };
 
   getCarData = () => {
@@ -216,7 +241,7 @@ class GameContainer extends React.Component {
 
   startGame = () => {
     console.log("game started");
-    this.startPointsTimer()
+    this.startPointsTimer();
     document.addEventListener("keydown", this.handleCarMove);
     this.setState({ gameActive: true, gameOver: false, finalPoints: 0 });
     this.getCarData().then(() => {
@@ -239,7 +264,11 @@ class GameContainer extends React.Component {
   gameOver = () => {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
-    this.setState({ gameActive: false, gameOver: true, finalPoints: this.state.points });
+    this.setState({
+      gameActive: false,
+      gameOver: true,
+      finalPoints: this.state.points
+    });
     this.saveScore();
     this.stopPointsTimer();
     // console.warn("YOU LOSE SUCKER");
@@ -247,13 +276,14 @@ class GameContainer extends React.Component {
 
   componentDidMount() {
     this.setBoundaries();
+    this.setBuffLocations();
     this.startGame();
   }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
-    clearInterval(this.timer)
+    clearInterval(this.timer);
   }
 
   render() {
@@ -269,9 +299,7 @@ class GameContainer extends React.Component {
               <Divider id="stats-log-divider" vertical />
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <RealTimeGameStatsContainer
-                    stats={this.state.car.stats}
-                  />
+                  <RealTimeGameStatsContainer stats={this.state.car.stats} />
                 </Grid.Column>
                 <Grid.Column>
                   <PointLog points={this.state.points} />
