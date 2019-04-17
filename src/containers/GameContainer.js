@@ -159,7 +159,7 @@ class GameContainer extends React.Component {
         if (this.checkCollision(pos.x, pos.y)) {
           console.log("theres been a collision");
           let health = this.state.car.stats.health;
-          health -= 1;
+          health -= 10;
           this.setState({
             car: {
               ...this.state.car,
@@ -178,7 +178,7 @@ class GameContainer extends React.Component {
           let tread = this.state.car.stats.tread;
 
           moves += 1;
-          if (moves % 5 === 0) decreaseTread = true;
+          if (moves % 10 === 0) decreaseTread = true;
           tread = decreaseTread ? tread - 1 : tread;
 
           if (!this.state.auraActive) this.checkInAura(pos.x, pos.y);
@@ -264,7 +264,7 @@ class GameContainer extends React.Component {
         case "gasStation":
           console.log("fuel buff active");
           let fuel = this.state.car.stats.fuel;
-          fuel += 3;
+          fuel += 6;
           this.updateCarStats("fuel", fuel);
           break;
         default:
