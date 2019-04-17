@@ -1,6 +1,6 @@
 export class Log {
-  static error(msg) {
-    return { type: "error", msg: `ERROR: ${msg}` };
+  static message(msg) {
+    return { type: "message", msg: `${msg}` };
   }
 
   static warn(msg) {
@@ -8,6 +8,6 @@ export class Log {
   }
 
   static notify(msg) {
-    return { type: "notify", msg: `${msg}` };
+    return { type: "notify", msg: `NOTIFY: ${msg}` };
   }
 }
