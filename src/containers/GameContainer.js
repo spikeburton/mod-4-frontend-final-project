@@ -253,6 +253,7 @@ class GameContainer extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
+    clearInterval(this.timer)
   }
 
   render() {
