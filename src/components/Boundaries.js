@@ -192,7 +192,7 @@ let Boundaries = () => {
             height: "69px"
           }}
         >
-          <img src={require("../images/gas-pump.png")} />
+          <img src={require("../images/gas-pump.png")} alt=''/>
         </div>
         <div
           className="hospital"
@@ -203,7 +203,7 @@ let Boundaries = () => {
             height: "85px"
           }}
         >
-          <img src={require("../images/red-cross.png")} />
+          <img src={require("../images/red-cross.png")} alt=''/>
         </div>
         <div
           className="tireShop"
@@ -214,7 +214,7 @@ let Boundaries = () => {
             height: "39px"
           }}
         >
-          <img src={require("../images/mechanic.png")} />
+          <img src={require("../images/mechanic.png")} alt=''/>
         </div>
       </div>
     );

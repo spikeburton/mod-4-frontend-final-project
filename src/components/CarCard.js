@@ -47,6 +47,12 @@ const CarCard = props => {
 };
 
 export default CarCard;
+
+    // <Icon bordered name='users' />
+    // <Icon bordered color='teal' name='users' />
+    // <Icon bordered inverted color='black' name='users' />
+    // <Icon bordered inverted color='teal' name='users' />
+
 /* <Button
             size="mini"
             content="Select"
