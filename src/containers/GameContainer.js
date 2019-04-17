@@ -5,6 +5,7 @@ import MapContainer from "./MapContainer";
 import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
 import PointLog from "../components/PointLog";
 import GameOver from "../components/GameOver";
+import { Log } from "../services/Log";
 
 import { GAME_WIDTH, GAME_HEIGHT, CAR_WIDTH, CAR_HEIGHT, API } from "../data";
 
@@ -161,6 +162,7 @@ class GameContainer extends React.Component {
           console.log("theres been a collision");
           let health = this.state.car.stats.health;
           health -= 10;
+          if (health <= 0) this.gameOver();
           this.setState({
             car: {
               ...this.state.car,
@@ -170,7 +172,6 @@ class GameContainer extends React.Component {
               }
             }
           });
-          if (health === 0) this.gameOver();
         } else if (!this.checkInBounds(pos.x, pos.y)) {
           console.log("Don't go drivin' there partner!");
         } else {
@@ -323,6 +324,7 @@ class GameContainer extends React.Component {
 
   startGame = () => {
     console.log("game started");
+    this.logInitialStartLog();
     this.startPointsTimer();
     document.addEventListener("keydown", this.handleCarMove);
     this.setState({ gameActive: true, gameOver: false, finalPoints: 0 });
@@ -371,7 +373,7 @@ class GameContainer extends React.Component {
   }
 
   logInitialStartLog = () => {
-    const welcomeLog = Log.notify("");
+    const welcomeLog = Log.notify('Hey there partner!');
     this.setState({ logs: [welcomeLog, ...this.state.logs] });
   };
 
