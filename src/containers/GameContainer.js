@@ -16,14 +16,15 @@ class GameContainer extends React.Component {
     super();
     this.state = {
       car: {
-        x: 292,
-        y: 0,
+        x: 302,
+        y: 1,
         stats: null,
         data: null
       },
       moves: 0,
-      gameActive: false,
       boundaries: [],
+      points: 100,
+      gameActive: false,
       gameOver: false
     };
   }
@@ -176,6 +177,23 @@ class GameContainer extends React.Component {
     }
   };
 
+  saveScore = () => {
+    const score = {
+      user_id: parseInt(localStorage.getItem("user")),
+      car_id: parseInt(localStorage.getItem("car")),
+      points: this.state.points
+    }
+
+    return fetch(`${API}/scores`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(score)
+    })
+  }
+
   startGame = () => {
       console.log("game started")
     document.addEventListener("keydown", this.handleCarMove);
@@ -201,7 +219,8 @@ class GameContainer extends React.Component {
     document.removeEventListener("keydown", this.handleCarMove);
     clearInterval(this.fuel);
     this.setState({ gameActive: false, gameOver: true });
-    console.warn("YOU LOSE SUCKER");
+    this.saveScore()
+    // console.warn("YOU LOSE SUCKER");
   };
 
   componentDidMount() {

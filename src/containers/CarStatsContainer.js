@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment } from "semantic-ui-react";
+import { Segment, Message } from "semantic-ui-react";
 import CarStats from "../components/CarStats";
 
 class CarStatsContainer extends React.Component {
@@ -9,14 +9,17 @@ class CarStatsContainer extends React.Component {
         <Segment>
           <h2>Car Stats</h2>
         </Segment>
-        <Segment id="car-stats-list">
-            {(this.props.car) ? 
-                <CarStats
-                    car={this.props.car}
-                    stats={this.props.stats}
-                    handleChange={this.props.handleChange}
-                    handleDoubleClick={this.props.handleDoubleClick}
-                /> : <div><p>Please Choose a Preset Car</p></div> }
+        <Segment className="divided-panel-container">
+          {this.props.car ? (
+            <CarStats
+              car={this.props.car}
+              stats={this.props.stats}
+              handleChange={this.props.handleChange}
+              handleDoubleClick={this.props.handleDoubleClick}
+            />
+          ) : (
+            <Message>Please Choose a Preset Car</Message>
+          )}
         </Segment>
       </Segment.Group>
     );

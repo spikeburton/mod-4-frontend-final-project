@@ -10,7 +10,7 @@ class CarStats extends Component {
         <Grid columns={2}>
           <Grid.Row verticalAlign="middle">
             <Grid.Column>
-              <Image src={car ? require(`../images/cars${car.right}`) : null }/>
+              <Image centered src={require(`../images/cars${car.right}`)}/>
             </Grid.Column>
             <Grid.Column>
               <Form.Input

@@ -6,7 +6,6 @@ import {
   Header,
   Image,
   Message,
-  Segment
 } from "semantic-ui-react";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
 import { API } from "../data";
@@ -28,6 +27,7 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    // delete this.state.errors;
     // console.log(
     //   "Submitted Form",
     //   e.target.username.value,
@@ -43,16 +43,25 @@ class Login extends React.Component {
     })
       .then(response => response.json())
       .then(payload => {
-        if (payload.error) console.log(payload.error);
-        else {
-          console.log(payload);
+        if (payload.error) {
+          this.setState({ errors: payload.error });
+        } else {
+          // console.log(payload);
           localStorage.setItem("user", payload.user.id);
-          localStorage.setItem("token", payload.jwt, );
+          localStorage.setItem("token", payload.jwt);
           this.props.history.push("/");
         }
       });
 
     e.target.reset();
+  };
+
+  handleReset = () => {
+    // console.log("form reset");
+    this.setState({
+      username: "",
+      password: ""
+    });
   };
 
   render() {
@@ -71,35 +80,46 @@ class Login extends React.Component {
                 account
               </Header>
 
-              <Form size="large" onSubmit={this.handleSubmit}>
-                <Segment stacked>
-                  <Form.Input
-                    fluid
-                    icon="user"
-                    iconPosition="left"
-                    name="username"
-                    type="text"
-                    placeholder="Username..."
-                    onChange={this.handleChange}
-                  />
-                  <Form.Input
-                    fluid
-                    icon="lock"
-                    iconPosition="left"
-                    name="password"
-                    type="password"
-                    placeholder="Password..."
-                    onChange={this.handleChange}
-                  />
-                  <Button color="blue" type="submit" fluid size="large">
-                    Login
-                  </Button>
-                </Segment>
+              <Form
+                className="fluid segment stacked"
+                size="large"
+                onSubmit={this.handleSubmit}
+                onReset={this.handleReset}
+              >
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  name="username"
+                  type="text"
+                  placeholder="Username..."
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  name="password"
+                  type="password"
+                  placeholder="Password..."
+                  onChange={this.handleChange}
+                />
+                <Button color="blue" type="submit" fluid size="large">
+                  Login
+                </Button>
               </Form>
-
-              <Message>
-                Never Played? <a href="/signup"> Create Account!</a>
-              </Message>
+              {this.state.errors ? (
+                <Message
+                  error
+                  header="There were some errors with your submission"
+                  attached="bottom"
+                  list={this.state.errors}
+                />
+              ) : (
+                <Message>
+                  Never Played? <a href="/signup"> Create Account!</a>
+                </Message>
+              )}
             </Grid.Column>
           </Grid>
         </div>

@@ -23,7 +23,7 @@ class ScoreBoardContainer extends React.Component {
         <Segment>
           <h2>Leaderboard</h2>
         </Segment>
-        <Segment placeholder>
+        <Segment placeholder className="divided-panel-container">
           <ScoreBoardList scores={this.state.scores.sort((a,b) => b.points - a.points)} />
         </Segment>
       </Segment.Group>
