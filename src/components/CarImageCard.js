@@ -27,7 +27,7 @@ class CarImageCard extends React.Component {
           />
         </Card.Content>
         <Card.Content>
-          <Card.Header style={{ 'font-size': '1.035em' }}>
+          <Card.Header style={{ 'fontSize': '1.035em' }}>
             <strong>{car.name}</strong>
           </Card.Header>
           <Card.Description>{description}</Card.Description>

@@ -8,10 +8,10 @@ class PointLog extends React.Component {
     return (
       <Segment.Group horizontal>
         <Segment color="yellow">
-          <FontAwesomeIcon icon={faCoins} size="md" /> {`Points: ${this.props.points}`} 
+          <FontAwesomeIcon icon={faCoins} size="sm" /> {`Points: ${this.props.points}`} 
         </Segment>
         <Segment color="yellow">
-          <FontAwesomeIcon icon={faListUl} size="md" /> Point Log
+          <FontAwesomeIcon icon={faListUl} size="sm" /> Point Log
         </Segment>
       </Segment.Group>
     );
