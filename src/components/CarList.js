@@ -5,7 +5,7 @@ import CarCard from "./CarCard";
 class CarList extends Component {
   render() {
     return (
-      <Card.Group id="car-list" itemsPerRow={2}>
+      <Card.Group itemsPerRow={2} className="card-container">
         {this.props.cars.map((car, i) => (
           <CarCard
             key={i}

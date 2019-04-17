@@ -5,7 +5,7 @@ import ScoreBoardCard from "./ScoreBoardCard";
 class ScoreBoardList extends Component {
   render() {
     return (
-      <Card.Group id="scoreboard-list" itemsPerRow={2}>
+      <Card.Group itemsPerRow={2} className="card-container">
         {this.props.scores.map((score, i) => (
           <ScoreBoardCard key={i} {...score} />
         ))}

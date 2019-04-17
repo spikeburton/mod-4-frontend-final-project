@@ -13,7 +13,7 @@ class CarImageList extends React.Component {
 
   render() {
     return (
-      <Card.Group itemsPerRow={2}>
+      <Card.Group itemsPerRow={2} className="card-container">
         {this.mapCarCards()}
       </Card.Group>
     );

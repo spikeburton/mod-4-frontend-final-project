@@ -10,7 +10,7 @@ class CarImageContainer extends React.Component {
         <Segment>
           <h2>Car Type</h2>
         </Segment>
-        <Segment placeholder id="car-image-list">
+        <Segment placeholder className="divided-panel-container">
           <CarImageList renderCarStats={this.props.renderCarStats} />
         </Segment>
       </Segment.Group>

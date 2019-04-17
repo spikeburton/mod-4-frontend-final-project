@@ -57,18 +57,20 @@ class CarContainer extends Component {
         <Segment>
           <h2>Choose Car</h2>
         </Segment>
-        <Segment placeholder>
-          {/* <CarList cars={this.state.cars} /> */}
-          <CarList
-            cars={this.state.cars}
-            selected={this.state.selected}
-            handleClick={this.handleClick}
-            deleteCar={this.deleteCar}
-          />
+        <Segment placeholder className="divided-panel-container">
+          {this.state.cars.length ? (
+            <CarList
+              cars={this.state.cars}
+              selected={this.state.selected}
+              handleClick={this.handleClick}
+              deleteCar={this.deleteCar}
+            />
+          ) : (
+            <NewCarButton />
+          )}
         </Segment>
-        <Segment>
-          <NewCarButton />
-        </Segment>
+        {/* <Segment>
+        </Segment> */}
       </Segment.Group>
     );
   }

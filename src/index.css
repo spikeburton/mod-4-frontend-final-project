@@ -2,14 +2,17 @@ body {
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
-/* #game-loader {
-  margin: 0 auto;
-  width: 950px;
-  height: 600px;
-} */
 .page-container {
   margin: 0 auto;
   width: 800px;
+}
+
+.card-container {
+  overflow-y: scroll;
+}
+
+.divided-panel-container {
+  height: 410px;
 }
 
 #game-loader-top {
@@ -17,23 +20,8 @@ body {
   overflow: hidden;
 }
 
-#scoreboard-list {
-  /* border: 1px solid black; */
-  height: 410px;
-  /* overflow: hidden; */
-  overflow-y: scroll;
-  /* box-sizing: content-box; */
-}
-
 .points {
   font-weight: bold;
-}
-
-#car-list {
-  /* border: 1px solid black; */
-  height: 360px;
-  overflow-y: scroll;
-  /* box-sizing: content-box; */
 }
 
 .car-card img {
@@ -42,26 +30,11 @@ body {
   height: 70px;
 }
 
-/* #car-creator-container {
-  margin: 0 auto;
-  width: 950px;
-  height: 600px;
-} */
-
 #car-creator-top {
   /* height: 500px; */
   height: 90%;
   /* border: 1px solid black; */
   overflow: hidden;
-}
-
-#car-image-list {
-  height: 440px;
-  overflow-y: scroll;
-}
-
-#car-stats-list {
-  height: 440px;
 }
 
 #car-stats-form {
