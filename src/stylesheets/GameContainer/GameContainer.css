@@ -34,6 +34,7 @@ body {
   background: url("../../images/map6-800x450-Best.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 15px;
   /* box-sizing: border-box; */
 }
 
@@ -53,4 +54,38 @@ body {
   height: 100%;
   /* left: -9px; */
   position: absolute;
+}
+
+.HQComps {
+  height: 100%;
+  margin: 2px;
+  padding: 2px;
+}
+
+#details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logpanel {
+  width: 100%;
+}
+
+pre {
+  height: 60px;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+}
+
+.message {
+  color: black;
+}
+
+.warn {
+  color: orange;
+}
+
+.notify {
+  color: red;
 }

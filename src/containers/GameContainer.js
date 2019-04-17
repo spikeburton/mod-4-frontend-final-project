@@ -5,6 +5,7 @@ import MapContainer from "./MapContainer";
 import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
 import PointLog from "../components/PointLog";
 import GameOver from "../components/GameOver";
+import { Log } from "../services/Log";
 
 import { GAME_WIDTH, GAME_HEIGHT, CAR_WIDTH, CAR_HEIGHT, API } from "../data";
 
@@ -31,7 +32,8 @@ class GameContainer extends React.Component {
       points: 0,
       finalPoints: 0,
       pointTimerOn: false,
-      start: 0
+      start: 0,
+      logs: []
     };
   }
 
@@ -157,9 +159,10 @@ class GameContainer extends React.Component {
             console.error("WTF HAPPENED LOL");
         }
         if (this.checkCollision(pos.x, pos.y)) {
-          console.log("theres been a collision");
+          this.handleLogs(Log.warn("OUCH!"));
           let health = this.state.car.stats.health;
           health -= 10;
+          if (health <= 0) this.gameOver();
           this.setState({
             car: {
               ...this.state.car,
@@ -169,9 +172,8 @@ class GameContainer extends React.Component {
               }
             }
           });
-          if (health === 0) this.gameOver();
         } else if (!this.checkInBounds(pos.x, pos.y)) {
-          console.log("Don't go drivin' there partner!");
+          this.handleLogs(Log.warn("Out Of Bounds!"));
         } else {
           let moves = this.state.moves;
           let decreaseTread = false;
@@ -236,8 +238,10 @@ class GameContainer extends React.Component {
         div.bottom < y + CAR_HEIGHT &&
         div.height + div.bottom > y
       ) {
-        console.log(`hit aura: ${div.className}`);
-        if (this.state.canActivateAura) this.setAura(div.className);
+          if (this.state.canActivateAura){
+              this.setAura(div.className);
+              this.handleLogs(Log.notify(`Hit Aura: ${div.className}`));
+        } 
         return true;
       }
     }
@@ -250,19 +254,19 @@ class GameContainer extends React.Component {
     this.buffTimer = setInterval(() => {
       switch (name) {
         case "hospital":
-          console.log("health buff active");
+          this.handleLogs(Log.notify("Health Aura Active"));
           let health = this.state.car.stats.health;
           health += 2;
           this.updateCarStats("health", health);
           break;
         case "tireShop":
-          console.log("tread buff active");
+          this.handleLogs(Log.notify("Tread Aura Active"));
           let tread = this.state.car.stats.tread;
           tread += 10;
           this.updateCarStats("tread", tread);
           break;
         case "gasStation":
-          console.log("fuel buff active");
+          this.handleLogs(Log.notify("Fuel Aura Active"));
           let fuel = this.state.car.stats.fuel;
           fuel += 6;
           this.updateCarStats("fuel", fuel);
@@ -287,6 +291,7 @@ class GameContainer extends React.Component {
       this.setState({ auraActive: false, canActivateAura: false });
       window.setTimeout(() => {
         this.setState({ canActivateAura: true });
+        this.handleLogs(Log.message("Aura Available"));
       }, 15000);
     }, 4000);
   };
@@ -321,25 +326,25 @@ class GameContainer extends React.Component {
   };
 
   startGame = () => {
-    console.log("game started");
-    this.startPointsTimer();
-    document.addEventListener("keydown", this.handleCarMove);
-    this.setState({ gameActive: true, gameOver: false, finalPoints: 0 });
-    this.getCarData().then(() => {
-      this.fuel = window.setInterval(() => {
-        let fuel = this.state.car.stats.fuel;
-        this.setState({
-          car: {
-            ...this.state.car,
-            stats: {
-              ...this.state.car.stats,
-              fuel: (fuel -= 1)
-            }
-          }
+      this.startPointsTimer();
+      document.addEventListener("keydown", this.handleCarMove);
+      this.setState({ gameActive: true, gameOver: false, finalPoints: 0 });
+      this.getCarData().then(() => {
+          this.fuel = window.setInterval(() => {
+              let fuel = this.state.car.stats.fuel;
+              this.setState({
+                  car: {
+                      ...this.state.car,
+                      stats: {
+                          ...this.state.car.stats,
+                          fuel: (fuel -= 1)
+                        }
+                    }
+                });
+                if (fuel === 0) this.gameOver();
+            }, 1000);
         });
-        if (fuel === 0) this.gameOver();
-      }, 1000);
-    });
+        this.handleLogs(Log.message("Game On!"));
   };
 
   gameOver = () => {
@@ -369,6 +374,16 @@ class GameContainer extends React.Component {
     clearInterval(this.buffTimer);
   }
 
+  logInitialStartLog = () => {
+    const welcomeLog = Log.message("Welcome partner!");
+    this.setState({ logs: [welcomeLog, ...this.state.logs] });
+  };
+
+  handleLogs = log => {
+    console.log(log)
+    this.setState({ logs: [log, ...this.state.logs] });
+  };
+
   render() {
     return (
       <div id="game-container">
@@ -382,10 +397,15 @@ class GameContainer extends React.Component {
               <Divider id="stats-log-divider" vertical />
               <Grid.Row verticalAlign="middle">
                 <Grid.Column>
-                  <RealTimeGameStatsContainer stats={this.state.car.stats} />
+                  <RealTimeGameStatsContainer
+                    stats={this.state.car.stats}
+                  />
                 </Grid.Column>
                 <Grid.Column>
-                  <PointLog points={this.state.points} />
+                  <PointLog
+                    points={this.state.points}
+                    logs={this.state.logs}
+                  />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
