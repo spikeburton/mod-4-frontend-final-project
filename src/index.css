@@ -1,5 +1,46 @@
+body:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  /* background-image: url("https://media.giphy.com/media/jQaV7CWuZW78Q/giphy.gif"); */
+  /* background-image: url("https://www.friendlyshade.com/wp-content/uploads/2017/11/road-stripe-yellow-02.jpg"); */
+  /* background-image: url("https://media.giphy.com/media/x45I8CY1Vs45G/giphy.gif"); */
+  background-size:cover;
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
+}
+
 body {
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  /* background-image: url("https://static.vecteezy.com/system/resources/previews/000/097/801/non_2x/keep-off-the-grass-background-free-vector.png"); */
+  background-image: url("./images/grass.png");
+  /* background-image: url("https://media.giphy.com/media/kc6n0RKTFbDJC/giphy.gif"); */
+  /* background-image: url("https://media.giphy.com/media/sYhysbwD7EuA/giphy.gif"); */
+  /* background-image: url("https://media.giphy.com/media/jQaV7CWuZW78Q/giphy.gif"); */
+  /* background-image: url("https://media.giphy.com/media/ObZQ2sie3nFle/giphy.gif"); */
+  /* background-image: url("https://media.giphy.com/media/458wKkWhXOUk4e0MfS/giphy.gif"); */
+  /* background-image: url("https://media.giphy.com/media/x45I8CY1Vs45G/giphy.gif"); */
+  /* background-image: url("https://media.giphy.com/media/ZtAZ3HMF8uMuc/source.gif"); */
+  /* background-image: url("https://media.giphy.com/media/12AIthlSyXfBXG/giphy.gif"); */
+  /* background-image: url("https://www.friendlyshade.com/wp-content/uploads/2017/11/road-stripe-yellow-02.jpg"); */
+  /* position: relative; */
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  /* background-repeat: repeat-x; */
+  /* background-size: cover; */
+  background-size: 100% 100%;
+  /* background-position-x: center; */
 }
 
 .page-container {
