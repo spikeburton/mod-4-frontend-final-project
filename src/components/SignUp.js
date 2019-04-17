@@ -39,7 +39,7 @@ class SignUp extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    delete this.state.errors
+    // delete this.state.errors
     // console.log(this.state);
     fetch(`${API}/users`, {
       method: "POST",

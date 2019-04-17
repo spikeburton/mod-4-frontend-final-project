@@ -28,7 +28,7 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    delete this.state.errors
+    // delete this.state.errors;
     // console.log(
     //   "Submitted Form",
     //   e.target.username.value,
@@ -57,6 +57,14 @@ class Login extends React.Component {
     e.target.reset();
   };
 
+  handleReset = () => {
+    // console.log("form reset");
+    this.setState({
+      username: "",
+      password: ""
+    });
+  };
+
   render() {
     return (
       <div className="form-container">
@@ -73,30 +81,33 @@ class Login extends React.Component {
                 account
               </Header>
 
-              <Form size="large" onSubmit={this.handleSubmit}>
-                <Segment stacked>
-                  <Form.Input
-                    fluid
-                    icon="user"
-                    iconPosition="left"
-                    name="username"
-                    type="text"
-                    placeholder="Username..."
-                    onChange={this.handleChange}
-                  />
-                  <Form.Input
-                    fluid
-                    icon="lock"
-                    iconPosition="left"
-                    name="password"
-                    type="password"
-                    placeholder="Password..."
-                    onChange={this.handleChange}
-                  />
-                  <Button color="blue" type="submit" fluid size="large">
-                    Login
-                  </Button>
-                </Segment>
+              <Form
+                className="fluid segment stacked"
+                size="large"
+                onSubmit={this.handleSubmit}
+                onReset={this.handleReset}
+              >
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  name="username"
+                  type="text"
+                  placeholder="Username..."
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  name="password"
+                  type="password"
+                  placeholder="Password..."
+                  onChange={this.handleChange}
+                />
+                <Button color="blue" type="submit" fluid size="large">
+                  Login
+                </Button>
               </Form>
               {this.state.errors ? (
                 <Message
