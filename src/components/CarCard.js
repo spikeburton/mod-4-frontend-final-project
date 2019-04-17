@@ -15,19 +15,23 @@ const CarCard = props => {
   return (
     <Card>
       <Card.Content>
-        <Image size="tiny" src={require(`../images/cars${car.right}`)} />
+        <Image
+          size="tiny"
+          src={require(`../images/cars${car.right}`)}
+          style={{ width: "60px" }}
+        />
       </Card.Content>
       <Card.Content>
-          <Card.Header>
-            <strong>{car.name}</strong>
-          </Card.Header>
-          <Card.Description>{description}</Card.Description>
+        <Card.Header>
+          <strong>{car.name}</strong>
+        </Card.Header>
+        <Card.Description>{description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
           {props.selected === car.id ? (
-            <Button disabled color="lightgrey">
-              <Icon name="check" />
+            <Button disabled>
+              <Icon name="check" style={{ margin: "0px 0px 0px 3px" }} />
             </Button>
           ) : (
             <Button
@@ -35,11 +39,14 @@ const CarCard = props => {
               color="green"
               onClick={() => props.handleClick(car)}
             >
-              <Icon name="check" />
+              <Icon name="check" style={{ margin: "0px 0px 0px 3px" }} />
             </Button>
           )}
           <Button basic color="red">
-            <Icon name="trash alternate" />
+            <Icon
+              name="trash alternate"
+              style={{ margin: "0px 0px 0px 0px" }}
+            />
           </Button>
         </div>
       </Card.Content>
