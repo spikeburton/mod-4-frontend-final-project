@@ -33,8 +33,8 @@ class CarContainer extends Component {
   }
 
   handleClick = car => {
-    localStorage.setItem("car", car.id)
-    this.setState({ selected: car.id })
+    localStorage.setItem("car", car.id);
+    this.setState({ selected: car.id });
     console.log(car);
   };
 
@@ -45,11 +45,10 @@ class CarContainer extends Component {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
     });
-    const i = this.state.cars.indexOf(car)
-    const j = (i + 1)
+    const i = this.state.cars.indexOf(car);
     this.setState({
-        cars: [...this.state.cars.slice(0, i), ...this.state.cars.slice(j)]
-     })
+      cars: [...this.state.cars.slice(0, i), ...this.state.cars.slice(i + 1)]
+    });
   };
 
   render() {
