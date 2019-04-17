@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Grid, Divider, Container } from "semantic-ui-react";
+import { Segment, Grid, Divider } from "semantic-ui-react";
 
 import MapContainer from "./MapContainer";
 import RealTimeGameStatsContainer from "./RealTimeGameStatsContainer";
@@ -60,7 +60,7 @@ class GameContainer extends React.Component {
         height: div.style.height
       };
       Object.keys(divObjStyle).map(function(key, i) {
-        divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]);
+        return divObjStyle[key] = parseInt(divObjStyle[key].split("px")[0]);
       });
       divObjects.push(divObjStyle);
     });
