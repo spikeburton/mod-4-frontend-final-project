@@ -12,7 +12,7 @@ class GameOver extends React.Component {
               basic
               size="small"
             >
-              <Header icon="archive" content="GAME OVER" />
+              <Header icon="exclamation triangle" content="GAME OVER" />
               <Modal.Content>
                 <p>
                   Would you like to play again?
