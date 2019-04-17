@@ -34,6 +34,7 @@ body {
   background: url("../../images/map6-800x450-Best.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 15px;
   /* box-sizing: border-box; */
 }
 
