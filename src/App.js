@@ -16,8 +16,28 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
+          <Route
+            exact
+            path="/login"
+            render={props => {
+              return !localStorage.getItem("token") ? (
+                <Login {...props} />
+              ) : (
+                <Redirect to="/" />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={props => {
+              return !localStorage.getItem("token") ? (
+                <SignUp {...props} />
+              ) : (
+                <Redirect to="/" />
+              );
+            }}
+          />
           <Route
             exact
             path="/"
@@ -25,11 +45,21 @@ class App extends Component {
               return localStorage.getItem("token") ? (
                 <GameLoader {...props} />
               ) : (
-                <Login {...props} />
+                <Redirect to="/login" />
               );
             }}
           />
-          <Route exact path="/create" component={CarCreatorContainer} />
+          <Route
+            exact
+            path="/create"
+            render={props => {
+              return localStorage.getItem("token") ? (
+                <CarCreatorContainer {...props} />
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
+          />
           <Route
             exact
             path="/game"
