@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Segment,
+  Message
+} from "semantic-ui-react";
 import { API } from "../data";
 import "../stylesheets/Login-SignUp/Login-SignUp.css";
 import Navbar from "./Navbar";
@@ -32,6 +40,7 @@ class SignUp extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    // delete this.state.errors
     // console.log(this.state);
     fetch(`${API}/users`, {
       method: "POST",
@@ -43,7 +52,8 @@ class SignUp extends React.Component {
       .then(response => response.json())
       .then(payload => {
         if (payload.error) {
-          payload.error.forEach(error => console.error(error));
+          // payload.error.forEach(error => console.error(error));
+          this.setState({ errors: payload.error })
         } else {
           localStorage.setItem("user", payload.user.id);
           localStorage.setItem("token", payload.jwt);
@@ -117,6 +127,14 @@ class SignUp extends React.Component {
                   </Button>
                 </Segment>
               </Form>
+              {this.state.errors ? (
+                <Message
+                  error
+                  header="There were some errors with your submission"
+                  attached="bottom"
+                  list={this.state.errors}
+                />
+              ) : null}
             </Grid.Column>
           </Grid>
         </div>
