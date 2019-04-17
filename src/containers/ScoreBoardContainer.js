@@ -18,6 +18,7 @@ class ScoreBoardContainer extends React.Component {
   }
 
   render() {
+      console.log(this.state.scores)
     return (
       <Segment.Group>
         <Segment>
