@@ -20,10 +20,14 @@ class CarImageCard extends React.Component {
     return (
       <Card onClick={this.handleClick}>
         <Card.Content>
-          <Image size="tiny" src={require(`../images/cars${car.right}`)} />
+          <Image
+            size="tiny"
+            src={require(`../images/cars${car.right}`)}
+            style={{ width: "60px" }}
+          />
         </Card.Content>
         <Card.Content>
-          <Card.Header>
+          <Card.Header style={{ 'font-size': '1.035em' }}>
             <strong>{car.name}</strong>
           </Card.Header>
           <Card.Description>{description}</Card.Description>

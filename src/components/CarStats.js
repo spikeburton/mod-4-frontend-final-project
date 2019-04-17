@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Form, Grid, Image } from "semantic-ui-react";
+import { Segment, Form, Grid, Card, Image } from "semantic-ui-react";
 
 class CarStats extends Component {
 
@@ -10,7 +10,31 @@ class CarStats extends Component {
         <Grid columns={2}>
           <Grid.Row verticalAlign="middle">
             <Grid.Column>
-              <Image centered src={require(`../images/cars${car.right}`)}/>
+              <Card>
+                <Card.Content>
+                  <Image
+                    size="tiny"
+                    src={require(`../images/cars${car.right}`)}
+                    style={{ width: "75%" }}
+                  />
+                </Card.Content>
+                <Card.Content>
+                  <Card.Header style={{ "font-size": "1.035em" }}>
+                    <strong>{car.name}</strong>
+                  </Card.Header>
+                  <Card.Description>
+                    <p>
+                      <strong>Fuel:</strong>
+                    </p>
+                    <p>
+                      <strong>Tread:</strong>
+                    </p>
+                    <p>
+                      <strong>Health:</strong>
+                    </p>
+                  </Card.Description>
+                </Card.Content>
+              </Card>
             </Grid.Column>
             <Grid.Column>
               <Form.Input
@@ -52,3 +76,8 @@ class CarStats extends Component {
 }
 
 export default CarStats;
+/* <Image
+  centered
+  src={require(`../images/cars${car.right}`)}
+  style={{ width: "75%" }}
+/>; */
