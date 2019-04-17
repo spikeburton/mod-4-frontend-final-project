@@ -45,6 +45,7 @@ class SignUp extends React.Component {
         if (payload.error) {
           payload.error.forEach(error => console.error(error));
         } else {
+          localStorage.setItem("user", payload.user.id);
           localStorage.setItem("token", payload.jwt);
           this.props.history.push("/");
         }
