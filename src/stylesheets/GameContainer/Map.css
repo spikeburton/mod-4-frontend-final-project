@@ -10,6 +10,9 @@
 .hospital {
   position: absolute;
   border: 1px solid red;
+  background: red;
+  z-index: 1;
+  opacity: 0;
 }
 
 .hospital img {

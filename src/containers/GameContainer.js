@@ -178,6 +178,7 @@ class GameContainer extends React.Component {
         if (moves % 5 === 0) decreaseTread = true;
         tread = decreaseTread ? tread - 1 : tread;
 
+        this.checkInAura(pos.x, pos.y);
         this.setState({
           car: {
             ...this.state.car,
@@ -190,7 +191,6 @@ class GameContainer extends React.Component {
           },
           moves: moves
         });
-        this.checkInAura();
         if (tread === 0) this.gameOver();
       }
     }
