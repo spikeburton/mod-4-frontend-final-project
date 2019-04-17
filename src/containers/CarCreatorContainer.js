@@ -4,6 +4,7 @@ import CarStatsContainer from "./CarStatsContainer";
 import MakeCarButton from "../components/MakeCarButton";
 import { Segment, Grid, Divider } from "semantic-ui-react";
 import Navbar from "../components/Navbar";
+import { API } from "../data";
 
 const DEFAULT_STATS = {
   max_fuel: 50,
@@ -49,6 +50,32 @@ class CarCreatorContainer extends React.Component {
     });
   };
 
+  createCar = () => {
+    const { car, stats } = this.state;
+
+    const carObj = {
+      user_id: parseInt(localStorage.getItem("user")),
+      name: car.name,
+      up: car.up,
+      down: car.down,
+      left: car.left,
+      right: car.right,
+      max_fuel: stats.max_fuel,
+      tread_wear: stats.tread_wear,
+      health: stats.health
+    };
+
+    fetch(`${API}/cars`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(carObj)
+    })
+    .then(this.props.history.push("/"))
+  };
+
   render() {
     return (
       <div className="page-container">
@@ -73,7 +100,7 @@ class CarCreatorContainer extends React.Component {
             </Grid>
           </Segment>
           <Segment textAlign="center">
-            <MakeCarButton car={this.state.car} stats={this.state.stats} />
+            <MakeCarButton car={this.state.car} handleClick={this.createCar} />
           </Segment>
         </Segment.Group>
       </div>
