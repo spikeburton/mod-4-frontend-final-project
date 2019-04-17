@@ -190,6 +190,7 @@ class GameContainer extends React.Component {
           },
           moves: moves
         });
+        this.checkInAura();
         if (tread === 0) this.gameOver();
       }
     }
@@ -221,6 +222,20 @@ class GameContainer extends React.Component {
       return false;
     }
   };
+
+  checkInAura = (x,y) => {
+    for (let div of this.state.buffLocations) {
+      if (
+        div.left < x + CAR_WIDTH &&
+        div.left + div.width > x &&
+        div.bottom < y + CAR_HEIGHT &&
+        div.height + div.bottom > y
+      )
+      console.log(`hit aura: ${div.className}`)
+      return true;
+    }
+    return false;
+  }
 
   saveScore = () => {
     const score = {
