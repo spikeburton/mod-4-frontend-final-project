@@ -362,7 +362,6 @@ class GameContainer extends React.Component {
   };
 
   componentDidMount() {
-    this.logInitialStartLog();
     this.setBoundaries();
     this.setBuffLocations();
     this.startGame();

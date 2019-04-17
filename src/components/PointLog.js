@@ -8,10 +8,10 @@ class PointLog extends React.Component {
 
     showAllLogs = () => {
         return this.props.logs.map((log, i) => {
-            return <p key={i} className={log.type}>{log.msg}</p>
+            return <div key={i} className={log.type}>{log.msg}</div>
         })
     }
-    
+
   render() {
     return (
       <Segment.Group horizontal>
