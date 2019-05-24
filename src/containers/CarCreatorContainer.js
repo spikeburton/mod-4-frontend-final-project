@@ -6,6 +6,7 @@ import { Segment, Grid, Divider } from "semantic-ui-react";
 import Navbar from "../components/Navbar";
 import { API } from "../data";
 
+const MAX_STATS = 215;
 const DEFAULT_STATS = {
   max_fuel: 50,
   tread_wear: 50,
@@ -33,19 +34,32 @@ class CarCreatorContainer extends React.Component {
   handleChange = e => {
     //   console.log(typeof(e.target.value))
     //   console.log(e.target.value)
-    this.setState({
-      stats: {
-        ...this.state.stats,
-        [e.target.name]: parseInt(e.target.value)
-      }
-    });
+    const newValue = parseInt(e.target.value);
+    const keys = Object.keys(this.state.stats).filter(k => k !== e.target.name);
+    if (
+      newValue + this.state.stats[keys[0]] + this.state.stats[keys[1]] <=
+      MAX_STATS
+    ) {
+      this.setState({
+        stats: {
+          ...this.state.stats,
+          [e.target.name]: newValue
+        }
+      });
+    }
   };
 
-  handleDoubleClick = e => {
+  handleDoubleClick = () => {
+    const { car } = this.state;
     this.setState({
+      // stats: {
+      //   ...this.state.stats,
+      //   [e.target.name]: this.state.car[e.target.name]
+      // }
       stats: {
-        ...this.state.stats,
-        [e.target.name]: this.state.car[e.target.name]
+        max_fuel: car.max_fuel,
+        tread_wear: car.tread_wear,
+        health: car.health
       }
     });
   };
@@ -73,14 +87,14 @@ class CarCreatorContainer extends React.Component {
       },
       body: JSON.stringify(carObj)
     })
-    .then(res => res.json())
-    .then(payload => {
-        if(payload.error){
-            console.error(payload.error)
+      .then(res => res.json())
+      .then(payload => {
+        if (payload.error) {
+          console.error(payload.error);
         } else {
-            this.props.history.push("/")
+          this.props.history.push("/");
         }
-    })
+      });
   };
 
   render() {
