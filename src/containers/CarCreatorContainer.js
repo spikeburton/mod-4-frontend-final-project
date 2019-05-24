@@ -6,6 +6,7 @@ import { Segment, Grid, Divider } from "semantic-ui-react";
 import Navbar from "../components/Navbar";
 import { API } from "../data";
 
+const MAX_STATS = 215;
 const DEFAULT_STATS = {
   max_fuel: 50,
   tread_wear: 50,
@@ -37,7 +38,7 @@ class CarCreatorContainer extends React.Component {
     const keys = Object.keys(this.state.stats).filter(k => k !== e.target.name);
     if (
       newValue + this.state.stats[keys[0]] + this.state.stats[keys[1]] <=
-      215
+      MAX_STATS
     ) {
       this.setState({
         stats: {
@@ -48,11 +49,17 @@ class CarCreatorContainer extends React.Component {
     }
   };
 
-  handleDoubleClick = e => {
+  handleDoubleClick = () => {
+    const { car } = this.state;
     this.setState({
+      // stats: {
+      //   ...this.state.stats,
+      //   [e.target.name]: this.state.car[e.target.name]
+      // }
       stats: {
-        ...this.state.stats,
-        [e.target.name]: this.state.car[e.target.name]
+        max_fuel: car.max_fuel,
+        tread_wear: car.tread_wear,
+        health: car.health
       }
     });
   };
