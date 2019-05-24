@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "0f93f84fc6578edb0446",
+    "revision": "1988a88c1d4393dd59bb",
     "url": "/mod-4-frontend-final-project/static/css/main.02fc6d8a.chunk.css"
   },
   {
-    "revision": "0f93f84fc6578edb0446",
-    "url": "/mod-4-frontend-final-project/static/js/main.30f082d4.chunk.js"
+    "revision": "1988a88c1d4393dd59bb",
+    "url": "/mod-4-frontend-final-project/static/js/main.3602a552.chunk.js"
   },
   {
     "revision": "26b35a7906754e10601c",
     "url": "/mod-4-frontend-final-project/static/js/runtime~main.060293f4.js"
   },
   {
-    "revision": "77601aa823a339cc8d14",
+    "revision": "4ecdf749958f0972894c",
     "url": "/mod-4-frontend-final-project/static/css/2.4f565cb0.chunk.css"
   },
   {
-    "revision": "77601aa823a339cc8d14",
-    "url": "/mod-4-frontend-final-project/static/js/2.b2cd411e.chunk.js"
+    "revision": "4ecdf749958f0972894c",
+    "url": "/mod-4-frontend-final-project/static/js/2.0e49df10.chunk.js"
   },
   {
     "revision": "e3f53cf74fe93641df1aee2512e94441",
@@ -36,12 +36,12 @@ self.__precacheManifest = [
     "url": "/mod-4-frontend-final-project/static/media/flags.9c74e172.png"
   },
   {
-    "revision": "ef60a4f6c25ef7f39f2d25a748dbecfe",
-    "url": "/mod-4-frontend-final-project/static/media/outline-icons.ef60a4f6.woff"
-  },
-  {
     "revision": "cd6c777f1945164224dee082abaea03a",
     "url": "/mod-4-frontend-final-project/static/media/outline-icons.cd6c777f.woff2"
+  },
+  {
+    "revision": "ef60a4f6c25ef7f39f2d25a748dbecfe",
+    "url": "/mod-4-frontend-final-project/static/media/outline-icons.ef60a4f6.woff"
   },
   {
     "revision": "701ae6abd4719e9c2ada3535a497b341",
@@ -68,12 +68,12 @@ self.__precacheManifest = [
     "url": "/mod-4-frontend-final-project/static/media/brand-icons.a046592b.woff"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "/mod-4-frontend-final-project/static/media/icons.8e3c7f55.eot"
-  },
-  {
     "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
     "url": "/mod-4-frontend-final-project/static/media/icons.b87b9ba5.ttf"
+  },
+  {
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "/mod-4-frontend-final-project/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
@@ -100,7 +100,7 @@ self.__precacheManifest = [
     "url": "/mod-4-frontend-final-project/static/media/grass.8bdacb4b.png"
   },
   {
-    "revision": "9d204c5bd6d525afc6fa60fb7139a3b1",
+    "revision": "1c14124cb0f851eb5fa4b1624b03be68",
     "url": "/mod-4-frontend-final-project/index.html"
   }
 ];
