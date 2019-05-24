@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { Segment, Form, Grid, Card, Image } from "semantic-ui-react";
 
 class CarStats extends Component {
-
   render() {
-      const { car, stats, handleChange, handleDoubleClick } = this.props
+    const { car, stats, handleChange, handleDoubleClick } = this.props;
     return (
       <Segment as={Form} id="car-stats-form">
         <Grid columns={2}>
-          <Grid.Row verticalAlign="middle" style={{ padding: '26% 0%' }}>
+          <Grid.Row verticalAlign="middle" style={{ padding: "26% 0%" }}>
             <Grid.Column>
               <Card>
                 <Card.Content>
